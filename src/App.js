@@ -1,25 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
+import { Component } from 'react';
+import axios from 'axios';
 
-function App() {
+ class App extends Component{
+   constructor(props){
+     super(props);
+     this.state={
+       images:[],
+     };
+   }
+
+//   componentDidMount=()=>{
+//     this.getCities();
+//   }
+
+// getCities= async ()=>{
+//   const response= await axios.get("http://localhost:3001/city/all")
+
+// this.setState({
+//   cities: response.data
+// });
+// }
+
+
+   render(){
+
+    // const cities=this.state.cities.map(city=>{
+    //   return(
+    //     <div>
+    //       <h3>{city.name}</h3>
+    //       <img src={city.img} alt="city"/>
+    //       <p>{city.state}, {city.country}</p>
+    //     </div>
+
+    //   )
+    // })
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    Verify App page is working
     </div>
-  );
-}
-
+    );
+  }
+ }
 export default App;
