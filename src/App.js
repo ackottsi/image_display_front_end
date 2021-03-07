@@ -10,36 +10,35 @@ import axios from 'axios';
      };
    }
 
-//   componentDidMount=()=>{
-//     this.getCities();
-//   }
+  componentDidMount=()=>{
+    this.getImages();
+  }
 
-// getCities= async ()=>{
-//   const response= await axios.get("http://localhost:3001/city/all")
-
-// this.setState({
-//   cities: response.data
-// });
-// }
+getImages= async ()=>{
+  const response= await axios.get("http://localhost:3002/images/all")
+  console.log(response)
+this.setState({
+  images: response.data
+});
+}
 
 
    render(){
 
-    // const cities=this.state.cities.map(city=>{
-    //   return(
-    //     <div>
-    //       <h3>{city.name}</h3>
-    //       <img src={city.img} alt="city"/>
-    //       <p>{city.state}, {city.country}</p>
-    //     </div>
+    const images=this.state.images.map(image=>{
+      return(
+        <div>
+          <h3>{image.title}</h3>
+          <img src={image.url} alt='picture of' />
+        </div>
 
-    //   )
-    // })
+      )
+    })
 
 
   return (
     <div className="App">
-    Verify App page is working
+    {images}
     </div>
     );
   }
