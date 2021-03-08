@@ -9,6 +9,7 @@ import {Route, Switch} from 'react-router-dom';
      super(props);
      this.state={
        images:[],
+       apiDataLoaded:false
      };
    }
 
@@ -20,29 +21,34 @@ getImages= async ()=>{
   const response= await axios.get("http://localhost:3002/images/all")
   console.log(response)
 this.setState({
-  images: response.data
+  images: response.data,
+  apiDataLoaded:true
 });
 }
 
 
    render(){
 
-    const images=this.state.images.map(image=>{
-      return(
-        <div>
-          <h3>{image.title}</h3>
-          <img src={image.url} alt='picture of' />
-        </div>
-
-      )
-    })
+    
 
 
   return (
-    <div className="App">
-    {images}
+    <div>
+      {this.state.apiDataLoaded ?  
+          <div className="App">
+
+            <Switch>
+                <Route exact path="/" render={(routerProps)=>(
+                  <HomePage imageData={this.state.images} {...routerProps}/>
+              )}/>
+              </Switch>
+
+        </div>
+      :
+        <p>data not loaded</p>
+      }
     </div>
-    );
+      );
+    }
   }
- }
 export default App;
