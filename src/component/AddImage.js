@@ -1,9 +1,39 @@
-import React, {useStatae} from 'react';
+import React, {useState} from 'react';
 import '../AddImage.css';
 
 
-const AddImage = (props) => {
+function AddImage(props){
     console.log(props)
+    const[state,setState]=useState({
+        title:'',
+        comments:'',
+        url:'',
+        date:''
+    })
+
+
+    const handleChange=(e)=>{
+        console.log(e.target)
+        const {title,comments,url,date,value}=e.target;
+        setState(prevState=>({
+            ...prevState,          
+            [title]:value,
+            [comments]:value,
+            [url]:value,
+            [date]:value
+        }))
+    }
+
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        setState({title:state.title,
+                  comments:state.comments,
+                  url:state.url,
+                  date:state.date
+                })
+    }
+
+
 
 
     return(
@@ -11,36 +41,36 @@ const AddImage = (props) => {
         <div className="AddImage">
 
       
-            <form onSubmit={this.login}>
+            <form className="create-form-container" onSubmit={handleSubmit}>
                 <input
                     name='title'
                     type='text'
                     placeholder='title'
-                    value={this.state.username}
-                    onChange={this.loginOnChange}
+                    value={state.title}
+                    onChange={handleChange}
                 />
                 <input
                     name='comments'
                     type='text'
                     placeholder='comments'
-                    value={this.state.comments}
-                    onChange={this.loginOnChange}
+                    value={state.comments}
+                    onChange={handleChange}
                 />
                  <input
                     name='url'
                     type='text'
-                    placeholder='title'
-                    value={this.state.url}
-                    onChange={this.loginOnChange}
+                    placeholder='url'
+                    value={state.url}
+                    onChange={handleChange}
                 />
                 <input
                     name='date'
                     type='date'
                     placeholder='date'
-                    value={this.state.date}
-                    onChange={this.loginOnChange}
+                    value={state.date}
+                    onChange={handleChange}
                 />
-                <input type='submit' value='Add Image' />
+                <input className="new-image-submit" type='submit' value='Add Image' />
             </form>
 
             
