@@ -2,6 +2,7 @@ import './App.css';
 import { Component } from 'react';
 import axios from 'axios';
 import HomePage from './component/HomePage'
+import AddImage from './component/AddImage'
 import {Route, Switch} from 'react-router-dom';
 
  class App extends Component{
@@ -37,6 +38,10 @@ this.setState({
                 <Route exact path="/" render={(routerProps)=>(
                   <HomePage imageData={this.state.images} {...routerProps}/>
               )}/>
+                <Route exact path="/AddImage" render={(routerProps)=>(
+                  <AddImage imageData={this.state.images} {...routerProps}/>
+                )}/>
+                
               </Switch>
 
         </div>

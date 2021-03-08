@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useStatae} from 'react';
 import '../AddImage.css';
+
 
 const AddImage = (props) => {
     console.log(props)
