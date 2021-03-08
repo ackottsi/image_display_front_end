@@ -1,6 +1,8 @@
 import './App.css';
 import { Component } from 'react';
 import axios from 'axios';
+import HomePage from './component/HomePage'
+import {Route, Switch} from 'react-router-dom';
 
  class App extends Component{
    constructor(props){
