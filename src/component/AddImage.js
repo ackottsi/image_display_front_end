@@ -20,9 +20,6 @@ function AddImage(props){
         setState(prevState=>({
             ...prevState,          
             [name]:value
-            // [comments]:value,
-            // [url]:value,
-            // [date]:value
         }))
     }
 
@@ -36,7 +33,7 @@ function AddImage(props){
           }
         setState(data)
 
-    const response= await axios.post('http://localhost:3002/images/all',data)
+    const response= await axios.post('http://localhost:3002/',data)
           console.log(response)
 
     }
