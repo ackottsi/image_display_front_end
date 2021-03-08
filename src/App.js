@@ -19,18 +19,14 @@ import {Route, Switch} from 'react-router-dom';
 
 getImages= async ()=>{
   const response= await axios.get("http://localhost:3002/images/all")
-  console.log(response)
+  // console.log(response)
 this.setState({
   images: response.data,
   apiDataLoaded:true
 });
 }
 
-
    render(){
-
-    
-
 
   return (
     <div>

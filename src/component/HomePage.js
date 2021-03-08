@@ -1,4 +1,5 @@
 import React from 'react';
+import '../HomePage.css';
 
 const HomePage = (props) => {
     console.log(props)
@@ -8,7 +9,7 @@ const HomePage = (props) => {
         return(
           <div>
             <h3>{image.title}</h3>
-            <img src={image.url} alt='picture of' />
+            <img src={image.url} alt='test' />
           </div>
   
         )
