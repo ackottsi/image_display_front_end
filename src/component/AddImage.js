@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import '../AddImage.css';
 
 
@@ -13,24 +14,31 @@ function AddImage(props){
 
 
     const handleChange=(e)=>{
+        e.preventDefault()
         console.log(e.target)
-        const {title,comments,url,date,value}=e.target;
+        const {name,value}=e.target;
         setState(prevState=>({
             ...prevState,          
-            [title]:value,
-            [comments]:value,
-            [url]:value,
-            [date]:value
+            [name]:value
+            // [comments]:value,
+            // [url]:value,
+            // [date]:value
         }))
     }
 
-    const handleSubmit=(e)=>{
+       const handleSubmit= async (e)=>{
         e.preventDefault();
-        setState({title:state.title,
-                  comments:state.comments,
-                  url:state.url,
-                  date:state.date
-                })
+        const data={
+            title:state.title,
+            comments:state.comments,
+            url:state.url,
+            date:state.date
+          }
+        setState(data)
+
+    const response= await axios.post('http://localhost:3002/images/all',data)
+          console.log(response)
+
     }
 
 
