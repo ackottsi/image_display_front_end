@@ -29,15 +29,13 @@ this.setState({
 }
 
 
-deleteImage=(id)=>{
+deleteImage=async (id)=>{
   console.log(id)
- 
-  // e.preventDefault()
-  // axios.delete(`http://localhost:3002/images/all/${id}`)
-  // .then(res=>{
-  //   const images=res.data;
-  //   this.setState({images})
-  // })
+  await axios.delete(`http://localhost:3002/images/${id}`)
+  .then(res=>{
+    const images=res.data;
+    this.setState({images})
+  })
   
 }
 
