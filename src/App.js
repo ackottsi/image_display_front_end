@@ -20,11 +20,25 @@ import {Route, Switch} from 'react-router-dom';
 
 getImages= async ()=>{
   const response= await axios.get("http://localhost:3002/images/all")
-  // console.log(response)
+  console.log(response)
+  console.log(this.state.images)
 this.setState({
   images: response.data,
   apiDataLoaded:true
 });
+}
+
+
+deleteImage=(id)=>{
+  console.log(id)
+ 
+  // e.preventDefault()
+  // axios.delete(`http://localhost:3002/images/all/${id}`)
+  // .then(res=>{
+  //   const images=res.data;
+  //   this.setState({images})
+  // })
+  
 }
 
    render(){
@@ -36,11 +50,13 @@ this.setState({
 
             <Switch>
                 <Route exact path="/" render={(routerProps)=>(
-                  <HomePage imageData={this.state.images} {...routerProps}/>
+                  <HomePage imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
               )}/>
                 <Route exact path="/AddImage" render={(routerProps)=>(
-                  <AddImage imageData={this.state.images} {...routerProps}/>
+                  <AddImage imageData={this.state.images}  {...routerProps}/>
                 )}/>
+
+
                 
               </Switch>
 
