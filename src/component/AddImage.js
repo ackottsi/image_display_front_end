@@ -33,7 +33,7 @@ function AddImage(props){
           }
         setState(data)
 
-    const response= await axios.post('http://localhost:3002/',data)
+    const response= await axios.post('http://localhost:3002/images/all',data)
           console.log(response)
 
     }
