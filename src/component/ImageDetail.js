@@ -2,9 +2,11 @@ import React from 'react';
 import '../ImageDetail.css';
 
 const ImageDetail=(props)=>{
-    console.log(props)
+   
     const foundImage=props.imageData.find(image=>{
-        return image.id===props.match.params.id
+        console.log(image.id)
+        console.log(props.match.params)
+        return image.id===parseInt(props.match.params.id)
     });
     
 return(
