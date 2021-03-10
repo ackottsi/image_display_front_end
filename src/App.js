@@ -59,6 +59,9 @@ deleteImage=async image=>{
                 <Route exact path="/AddImage" render={(routerProps)=>(
                   <AddImage imageData={this.state.images}  {...routerProps}/>
                 )}/>
+                 <Route exact path="/ImageDetail/:id" render={(routerProps)=>(
+                  <ImageDetail imageData={this.state.images}  {...routerProps}/>
+                )}/>
 
 
                 

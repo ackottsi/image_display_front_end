@@ -7,5 +7,7 @@ return(
     <div className="image-detail-container">
         This is the image detail page
     </div>
-)
+    )
 }
+
+export default ImageDetail
