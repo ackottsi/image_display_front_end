@@ -13,7 +13,8 @@ return(
     <div className="image-detail-container">
         {foundImage ? (
             <div>
-                This is the image detail page
+                <h2>{foundImage.title}</h2>
+                <img src={foundImage.url}/>
             </div>
         ):
        
