@@ -3,6 +3,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import HomePage from './component/HomePage'
 import AddImage from './component/AddImage'
+import ImageDetail from './component/ImageDetail'
 import {Route, Switch} from 'react-router-dom';
 
  class App extends Component{
@@ -35,7 +36,8 @@ this.setState({
 deleteImage=async image=>{
   console.log(image.id)
  await axios.delete(`http://localhost:3002/images/${image.id}`)
- const images=this.state.images.filter(item=>item.id!==image.id);
+ const images=this.state.images.filter(item=>item.id!==image.id);  //https://dev.to/moz5691/axios-in-reactjs-iah
+                                                                   
  this.setState({images})
 }
   
