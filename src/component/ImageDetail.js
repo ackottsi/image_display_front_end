@@ -1,6 +1,8 @@
 import '../ImageDetail.css';
 import React, {useState} from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+
 
 const ImageDetail=(props)=>{
     const foundImage=props.imageData.find(image=>{
@@ -34,7 +36,8 @@ const ImageDetail=(props)=>{
             url:state.url,
             date:state.date
           }
-        setState(data)
+        
+        setState({data,editImage:false})
 
         const response= await axios.post('http://localhost:3002/images/all',data)
         console.log(response)
@@ -42,32 +45,49 @@ const ImageDetail=(props)=>{
   }
 
 
-
-
-
+  if (state.editImage===true){    
     
-    
-return(
-    <div className="image-detail-container">
-        {foundImage ? (
-            <div>
-                  <form className="create-form-container" onSubmit={handleSubmit}>
-                <input
-                    name='title'
-                    type='text'
-                    placeholder='title'
-                    value={state.title}
-                    onChange={handleChange}
-                />
-                <input className="new-image-submit" type='submit' value='Update' />
-            </form>
+        return(
+            
+            <div className="image-detail-container">
+                {foundImage ? (
+                    <div>
+                        <form className="create-form-container" onSubmit={handleSubmit}>
+                            <input
+                                name='title'
+                                type='text'
+                                placeholder='title'
+                                value={state.title}
+                                onChange={handleChange}
+                            />
+                            <input className="new-image-submit" type='submit' value='Update' />
+                        </form>
+                    </div>
+                ):
+            
+                    <h1>No Image found</h1>
+                }
             </div>
-        ):
-       
-            <h1>No Image found</h1>
-        }
-    </div>
-    )
+        )
+    }
+
+    else{
+
+        return(
+            
+            <div className="image-detail-container">
+                {foundImage ? (
+                    <div>
+                       <h3>{foundImage.title}</h3>
+                    </div>
+                ):
+            
+                    <h1>No Image found</h1>
+                }
+            </div>
+        )
+    }
 }
 
-export default ImageDetail
+
+export default withRouter(ImageDetail)

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import '../AddImage.css';
 
@@ -83,4 +84,4 @@ function AddImage(props){
     );
 }
 
-export default AddImage;
+export default withRouter(AddImage);
