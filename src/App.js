@@ -18,6 +18,9 @@ import {Route, Switch} from 'react-router-dom';
     this.getImages();
   }
 
+
+  
+
 getImages= async ()=>{
   const response= await axios.get("http://localhost:3002/images/all")
   console.log(response)
@@ -29,15 +32,16 @@ this.setState({
 }
 
 
-deleteImage=async (id)=>{
-  console.log(id)
-  await axios.delete(`http://localhost:3002/images/${id}`)
-  .then(res=>{
-    const images=res.data;
-    this.setState({images})
-  })
-  
+deleteImage=async image=>{
+  console.log(image.id)
+ await axios.delete(`http://localhost:3002/images/${image.id}`)
+ const images=this.state.images.filter(item=>item.id!==image.id);
+ this.setState({images})
 }
+  
+  
+  
+
 
    render(){
 
