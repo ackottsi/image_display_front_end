@@ -59,7 +59,7 @@ return(
                     value={state.title}
                     onChange={handleChange}
                 />
-                <input className="new-image-submit" type='submit' value='Add Image' />
+                <input className="new-image-submit" type='submit' value='Update' />
             </form>
             </div>
         ):
