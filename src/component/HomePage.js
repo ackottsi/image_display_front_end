@@ -1,5 +1,6 @@
 import React from 'react';
 import '../HomePage.css';
+import {Link} from 'react-router-dom'
 
 const HomePage = (props) => {
     console.log(props)
@@ -8,10 +9,12 @@ const HomePage = (props) => {
     const images=props.imageData.map((image,index)=>{
 
         return(
-          <div key={image.id}>
+          <div className="homepage-image-container" key={image.id}>
             <h3>{image.title}</h3>
-            <img src={image.url} alt='test' />
-            <button id={image.id} onClick={()=>props.deleteImage(image)}>DELETE</button>
+            <Link to={`/ImageDetail/${image.id}`}>
+              <img src={image.url} alt='test' />
+            </Link>
+              <button id={image.id} onClick={()=>props.deleteImage(image)}>DELETE</button>
           </div>
   
         )
