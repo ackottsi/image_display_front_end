@@ -6,8 +6,6 @@ import { withRouter } from 'react-router-dom';
 
 const ImageDetail=(props)=>{
     const foundImage=props.imageData.find(image=>{
-        console.log(image.id)
-        console.log(props.match.params)
         return image.id===parseInt(props.match.params.id)
     });
     const[state,setState]=useState({
@@ -18,8 +16,12 @@ const ImageDetail=(props)=>{
         editImage:false
     })
 
+
+
     const handleChange=(e)=>{
+       
         e.preventDefault()
+        console.log(state.title)
         console.log(e.target)
         const {name,value}=e.target;
         setState(prevState=>({
@@ -28,31 +30,47 @@ const ImageDetail=(props)=>{
         }))
     }
 
-       const handleSubmit= async (e)=>{
+       const handleEdit= async (e)=>{
         e.preventDefault();
+        console.log(props)
         const data={
-            title:state.title,
-            comments:state.comments,
-            url:state.url,
-            date:state.date
-          }
-        
-        setState({data,editImage:false})
+            title:state.title
+            // comments:state.comments,
+            // url:state.url,
+            // date:state.date
+        }
+        console.log(data)
 
-        const response= await axios.post('http://localhost:3002/images/all',data)
-        console.log(response)
+       const res= await axios.put(`http://localhost:3002/images/${foundImage.id}`,data)
+        console.log(res)
+        const updatedData=res.data;
+        console.log(state.title)
+        setState({title:updatedData.title,editImage:false});
+      
+        // props.history.push(`/ImageDetail/${foundImage.id}`)
 
   }
 
 
+    const handleViewRender= async()=>{
+        const response= await axios.get(`http://localhost:3002/images/${foundImage.id}`)
+            console.log(response)
+            const data=response.data          
+        console.log("edit button test")
+        // console.log(state.title)
+        setState({editImage:true, title:data.title})
+    }
+
+console.log(state.editImage)
   if (state.editImage===true){    
-    
+      console.log(state.title)
+      
         return(
             
             <div className="image-detail-container">
                 {foundImage ? (
                     <div>
-                        <form className="create-form-container" onSubmit={handleSubmit}>
+                        <form className="create-form-container" onSubmit={handleEdit}>
                             <input
                                 name='title'
                                 type='text'
@@ -60,7 +78,7 @@ const ImageDetail=(props)=>{
                                 value={state.title}
                                 onChange={handleChange}
                             />
-                            <input className="new-image-submit" type='submit' value='Update' />
+                            <input className="new-image-submit" type='submit' name='' value='Update' />
                         </form>
                     </div>
                 ):
@@ -72,13 +90,16 @@ const ImageDetail=(props)=>{
     }
 
     else{
-
+        console.log(state.title)
         return(
+            
             
             <div className="image-detail-container">
                 {foundImage ? (
-                    <div>
-                       <h3>{foundImage.title}</h3>
+                    <div className="image-detail-container">
+                       <h3>{state.title}</h3>
+                       <img src={foundImage.url} alt={foundImage.comments}/>
+                       <button onClick={()=>handleViewRender()}>EDIT</button>
                     </div>
                 ):
             
