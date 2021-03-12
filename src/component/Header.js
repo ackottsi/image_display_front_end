@@ -14,7 +14,7 @@ const Header = (props) => {
               <div className="logoTitleHeader">
               </div>
               <div className="headerMiddle">
-                <Link className="headerLink" to="/">Gallery Page</Link>
+                <Link className="headerLink" to="/">Home</Link>
                      <Link className="headerLink" to="/">Gallery Page</Link>
                 <Link className="headerLink" to="/WatchList">Sign-up</Link>
               </div>

@@ -97,15 +97,22 @@ console.log(state.editImage)
         return(
             
             
-            <div className="image-detail-container">
+            <div>
                 {foundImage ? (
-                    <div className="image-detail-container">
+                    <div className="page-container">
+                        <div className="image-detail-container">
+                            <div className="left-side-container">    
+                                <img src={foundImage.url} alt={foundImage.comments}/> 
+                            </div>
+                            <div className="right-side-container">
+                                <h3>{state.title}</h3>
+                                <h4>{state.comments}</h4>
+                                <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
 
-                       <h3>{state.title}</h3>
-                       <img src={foundImage.url} alt={foundImage.comments}/>
-                       <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
-                       <h4>{foundImage.comments}</h4>
-                    </div>
+                            </div>
+                           
+                        </div>
+                    </div>    
                 ):
             
                     <h1>No Image found</h1>
