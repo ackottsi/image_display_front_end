@@ -1,4 +1,23 @@
 .image-detail-container img{
-    height: 200px;
-    width: 220px;
+    width: 50vw;
+    height: auto;
     }
+
+    .image-detail-container{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+.edit-button{
+
+    margin-top: 20px;
+}
+
+.edit-form-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

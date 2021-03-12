@@ -17,6 +17,7 @@ import {Route, Switch} from 'react-router-dom';
 
   componentDidMount=()=>{
     this.getImages();
+    this.getUser();
   }
 
 
@@ -26,11 +27,24 @@ getImages= async ()=>{
   const response= await axios.get("http://localhost:3002/images/all")
   console.log(response)
   console.log(this.state.images)
-this.setState({
-  images: response.data,
-  apiDataLoaded:true
-});
+// this.setState({
+//   images: response.data,
+//   apiDataLoaded:true
+// });
 }
+
+getUser= async ()=>{
+  const response= await axios.get("http://localhost:3002/user/profile/1")
+  console.log(response)
+  this.setState({
+      images: response.data.Images,
+      apiDataLoaded:true
+    });
+};
+
+
+ 
+
 
 
 deleteImage=async image=>{

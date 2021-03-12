@@ -52,13 +52,13 @@ const ImageDetail=(props)=>{
   }
 
 
-    const handleViewRender= async()=>{
-        const response= await axios.get(`http://localhost:3002/images/${foundImage.id}`)
-            console.log(response)
-            const data=response.data          
+    const handleViewRender=()=>{
+        // const response= await axios.get(`http://localhost:3002/images/${foundImage.id}`)
+            // console.log(response)
+            // const data=response.data          
         console.log("edit button test")
         // console.log(state.title)
-        setState({editImage:true, title:data.title})
+        setState({editImage:true})
     }
 
 console.log(state.editImage)
@@ -69,17 +69,20 @@ console.log(state.editImage)
             
             <div className="image-detail-container">
                 {foundImage ? (
-                    <div>
-                        <form className="create-form-container" onSubmit={handleEdit}>
-                            <input
-                                name='title'
-                                type='text'
-                                placeholder='title'
-                                value={state.title}
-                                onChange={handleChange}
-                            />
-                            <input className="new-image-submit" type='submit' name='' value='Update' />
-                        </form>
+                    <div className='edit-detail-container'>
+                       <h3>{state.title}</h3>
+                    
+                        <img src={foundImage.url} alt={foundImage.comments}/>
+                            <form className="edit-form-container" onSubmit={handleEdit}>
+                                Picture Title:<input
+                                    name='title'
+                                    type='text'
+                                    placeholder='title'
+                                    value={state.title}
+                                    onChange={handleChange}
+                                />
+                                <input className="new-image-submit" type='submit' name='' value='Update' />
+                            </form>
                     </div>
                 ):
             
@@ -97,9 +100,10 @@ console.log(state.editImage)
             <div className="image-detail-container">
                 {foundImage ? (
                     <div className="image-detail-container">
+
                        <h3>{state.title}</h3>
                        <img src={foundImage.url} alt={foundImage.comments}/>
-                       <button onClick={()=>handleViewRender()}>EDIT</button>
+                       <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
                     </div>
                 ):
             
