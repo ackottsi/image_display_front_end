@@ -13,7 +13,10 @@ import Login  from './component/Login'
      super(props);
      this.state={
        images:[],
-       apiDataLoaded:false
+       apiDataLoaded:false,
+       username:'',
+       password:'',
+       userId:null
      };
    }
 
@@ -45,10 +48,6 @@ getUser= async ()=>{
 };
 
 
- 
-
-
-
 deleteImage=async image=>{
   console.log(image.id)
  await axios.delete(`http://localhost:3002/images/${image.id}`)
@@ -57,6 +56,32 @@ deleteImage=async image=>{
  this.setState({images})
 }
   
+
+
+handleChange=(e)=>{
+  e.preventDefault()
+  const {name,value}=e.target;
+  this.setState(prevState=>({
+      ...prevState,          
+      [name]:value
+  }))
+}
+
+
+userLogin=async (e)=>{
+  e.preventDefault();
+
+const data={
+  username: this.state.username,
+  password: this.state.password
+};
+
+console.log(data);
+const response = await axios.post('http://localhost:3002/auth/login', data);
+console.log(response);
+};
+
+
   
   
 
@@ -71,7 +96,8 @@ deleteImage=async image=>{
             <Header/>
 
             <Switch>
-              <Login/>
+              <Login handleChange={this.handleChange} userLogin={this.userLogin}
+                username={this.username} password={this.password} userId={this.userId} />
                 <Route exact path="/" render={(routerProps)=>(
                   <HomePage imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
               )}/>

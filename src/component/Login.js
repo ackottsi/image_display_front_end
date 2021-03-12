@@ -5,63 +5,33 @@ import axios from 'axios'
 
 
 function Login(props){
-    const [state, setState]=useState({
-        username:'',
-        password:'',
-        loggedIn:false
-    })
+   
 
-    //followed the example from caseybook
-    //along with using the following url from medium:
-    //https://medium.com/technoetics/create-basic-login-forms-using-react-js-hooks-and-bootstrap-2ae36c15e551
+    console.log(props)
 
-    const handleChange=(e)=>{
-        e.preventDefault()
-        const {name,value}=e.target;
-        setState(prevState=>({
-            ...prevState,          
-            [name]:value
-        }))
-    }
-
-
-
-
-
-    const userLogin=async (e)=>{
-        e.preventDefault();
-    
-    const data={
-        username: state.username,
-        password: state.password
-    };
-
-    console.log(data);
-    const response = await axios.post('http://localhost:3002/auth/login', data);
-    console.log(response);
-  };
+   
     
         return(  
             <div>
-                {state.loggedIn
+                {props.id
                 ?
-                    <h3 className="Signed-In">Welcome {state.username}!</h3>
+                    <h3 className="Signed-In">Welcome {props.username}!</h3>
                 :
                     <div className="Login-Container">      
-                        <form className="Login-Form"  onSubmit={userLogin}>
+                        <form className="Login-Form"  onSubmit={props.userLogin}>
                             <label className="Login-Label" htmlFor="username">username</label>
                             <input className="Login-Input"
                                 type="text"
                                 name="username"
-                                value={state.username}
-                                onChange={handleChange}
+                                value={props.username}
+                                onChange={props.handleChange}
                             />
                             <label className="Login-Label" htmlFor="password">Password</label>
                             <input className="Login-Input"
                                 type="password"
                                 name="password"
-                                value={state.password}
-                                onChange={handleChange}
+                                value={props.password}
+                                onChange={props.handleChange}
                             />
                             <input 
                                 className="Login-Submit" 
