@@ -34,8 +34,8 @@ const ImageDetail=(props)=>{
         e.preventDefault();
         console.log(props)
         const data={
-            title:state.title
-            // comments:state.comments,
+            title:state.title,
+            comments:state.comments
             // url:state.url,
             // date:state.date
         }
@@ -45,20 +45,20 @@ const ImageDetail=(props)=>{
         console.log(res)
         const updatedData=res.data;
         console.log(state.title)
-        setState({title:updatedData.title,editImage:false});
+        setState({title:updatedData.title, comments:updatedData.comments, editImage:false});
       
         // props.history.push(`/ImageDetail/${foundImage.id}`)
 
   }
 
 
-    const handleViewRender= async()=>{
-        const response= await axios.get(`http://localhost:3002/images/${foundImage.id}`)
-            console.log(response)
-            const data=response.data          
+    const handleViewRender=()=>{
+        // const response= await axios.get(`http://localhost:3002/images/${foundImage.id}`)
+            // console.log(response)
+            // const data=response.data          
         console.log("edit button test")
         // console.log(state.title)
-        setState({editImage:true, title:data.title})
+        setState({editImage:true})
     }
 
 console.log(state.editImage)
@@ -69,18 +69,41 @@ console.log(state.editImage)
             
             <div className="image-detail-container">
                 {foundImage ? (
-                    <div>
-                        <form className="create-form-container" onSubmit={handleEdit}>
-                            <input
-                                name='title'
-                                type='text'
-                                placeholder='title'
-                                value={state.title}
-                                onChange={handleChange}
-                            />
-                            <input className="new-image-submit" type='submit' name='' value='Update' />
-                        </form>
-                    </div>
+
+                        <div className="page-container-edit">
+                            <div className="left-side-container">      
+                                <img src={foundImage.url} alt={foundImage.comments}/>
+                            
+
+                                
+                                <div className="edit-detail-container">
+                                    <form className="edit-form-container" onSubmit={handleEdit}>
+                                        Picture Title:<input
+                                            name='title'
+                                            type='text'
+                                            placeholder='title'
+                                            value={state.title}
+                                            defaultValue={foundImage.title}
+                                            onChange={handleChange}
+                                        /><br></br>
+
+                                        Details:<input className="details-form"
+                                            name='comments'
+                                            type='text'
+                                            placeholder='comments'
+                                            value={state.comments}
+                                            onChange={handleChange}
+                                        /><br></br>
+                                        <input className="edit-button" type='submit' name='' value='Update' />
+                                    </form>
+                                </div> 
+                            </div>
+
+                            <div className="right-side-container">
+                                <h3>{state.title}</h3>
+                                <h4>{state.comments}</h4>
+                            </div>
+                        </div>
                 ):
             
                     <h1>No Image found</h1>
@@ -94,13 +117,22 @@ console.log(state.editImage)
         return(
             
             
-            <div className="image-detail-container">
+            <div>
                 {foundImage ? (
-                    <div className="image-detail-container">
-                       <h3>{state.title}</h3>
-                       <img src={foundImage.url} alt={foundImage.comments}/>
-                       <button onClick={()=>handleViewRender()}>EDIT</button>
-                    </div>
+                    <div className="page-container">
+                        <div className="image-detail-container">
+                            <div className="left-side-container">    
+                                <img src={foundImage.url} alt={foundImage.comments}/> 
+                            </div>
+                            <div className="right-side-container">
+                                <h3>{state.title}</h3>
+                                <h4>{state.comments}</h4>
+                                <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
+
+                            </div>
+                           
+                        </div>
+                    </div>    
                 ):
             
                     <h1>No Image found</h1>

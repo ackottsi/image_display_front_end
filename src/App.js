@@ -5,6 +5,7 @@ import HomePage from './component/HomePage'
 import AddImage from './component/AddImage'
 import ImageDetail from './component/ImageDetail'
 import {Route, Switch} from 'react-router-dom';
+import Header from './component/Header'
 
  class App extends Component{
    constructor(props){
@@ -17,6 +18,7 @@ import {Route, Switch} from 'react-router-dom';
 
   componentDidMount=()=>{
     this.getImages();
+    this.getUser();
   }
 
 
@@ -26,11 +28,24 @@ getImages= async ()=>{
   const response= await axios.get("http://localhost:3002/images/all")
   console.log(response)
   console.log(this.state.images)
-this.setState({
-  images: response.data,
-  apiDataLoaded:true
-});
+// this.setState({
+//   images: response.data,
+//   apiDataLoaded:true
+// });
 }
+
+getUser= async ()=>{
+  const response= await axios.get("http://localhost:3002/user/profile/1")
+  console.log(response)
+  this.setState({
+      images: response.data.Images,
+      apiDataLoaded:true
+    });
+};
+
+
+ 
+
 
 
 deleteImage=async image=>{
@@ -51,6 +66,8 @@ deleteImage=async image=>{
     <div>
       {this.state.apiDataLoaded ?  
           <div className="App">
+
+            <Header/>
 
             <Switch>
                 <Route exact path="/" render={(routerProps)=>(
