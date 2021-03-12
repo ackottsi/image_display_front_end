@@ -1,0 +1,84 @@
+.Login-Container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  color:white;
+  width: 100%;
+  text-decoration: none;
+  margin-right: 40px;
+  margin-bottom: 3px;
+  padding-right: 30px;
+}
+
+
+
+.Login-Form{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Login-Input{
+  border:solid black;
+  border-width: thin;
+  width:170ppx;
+  font-size: 10px;
+}
+
+.Login-Submit {
+  display: flex;
+  border: solid black;
+  border-width: thin;
+  font-size: 14px;
+  margin-top: 0px;
+  background-color: lemonchiffon;
+  height: 20px;
+  width: 72px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.Login-Label{
+  display: flex;
+  font-size: 18px;
+  margin-top: 0px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Register-Link{
+  margin:0;
+  font-size: 20px;
+}
+
+
+.Signup-Here{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;  
+  text-decoration: none;
+  margin:0 0 0 20px;
+}
+
+.Signup-Here a{
+  text-decoration: none;
+  color: yellow;
+}
+
+.Signup-Here a:visited{
+  text-decoration: none;
+  color: yellow;
+}
+
+.Signed-In{
+  color:white;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  width:100%;
+  font-size: inherit;
+  margin-left: 5px;
+  align-items: center;
+}

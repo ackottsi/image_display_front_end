@@ -6,6 +6,7 @@ import AddImage from './component/AddImage'
 import ImageDetail from './component/ImageDetail'
 import {Route, Switch} from 'react-router-dom';
 import Header from './component/Header'
+import Login  from './component/Login'
 
  class App extends Component{
    constructor(props){
@@ -70,6 +71,7 @@ deleteImage=async image=>{
             <Header/>
 
             <Switch>
+              <Login/>
                 <Route exact path="/" render={(routerProps)=>(
                   <HomePage imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
               )}/>
