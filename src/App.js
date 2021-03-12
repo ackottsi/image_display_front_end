@@ -26,9 +26,9 @@ import Login  from './component/Login'
   
 
 getImages= async ()=>{
-  const response= await axios.get("http://localhost:3002/images/all")
-  console.log(response)
-  console.log(this.state.images)
+//   const response= await axios.get("http://localhost:3002/images/all")
+//   console.log(response)
+//   console.log(this.state.images)
 // this.setState({
 //   images: response.data,
 //   apiDataLoaded:true
@@ -36,7 +36,7 @@ getImages= async ()=>{
 }
 
 getUser= async ()=>{
-  const response= await axios.get("http://localhost:3002/user/profile/1")
+  const response= await axios.get(`http://localhost:3002/user/profile/1`)
   console.log(response)
   this.setState({
       images: response.data.Images,

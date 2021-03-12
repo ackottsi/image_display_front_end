@@ -24,6 +24,10 @@ function Login(props){
         }))
     }
 
+
+
+
+
     const userLogin=async (e)=>{
         e.preventDefault();
     
@@ -33,7 +37,7 @@ function Login(props){
     };
 
     console.log(data);
-    const response = await axios.post('http://localhost:3001/auth/login', data);
+    const response = await axios.post('http://localhost:3002/auth/login', data);
     console.log(response);
   };
     
