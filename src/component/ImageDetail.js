@@ -70,19 +70,36 @@ console.log(state.editImage)
             <div className="image-detail-container">
                 {foundImage ? (
                     <div className='edit-detail-container'>
-                       <h3>{state.title}</h3>
-                    
-                        <img src={foundImage.url} alt={foundImage.comments}/>
-                            <form className="edit-form-container" onSubmit={handleEdit}>
-                                Picture Title:<input
-                                    name='title'
-                                    type='text'
-                                    placeholder='title'
-                                    value={state.title}
-                                    onChange={handleChange}
-                                />
-                                <input className="new-image-submit" type='submit' name='' value='Update' />
-                            </form>
+                        <div className="left-side-container">      
+                            <img src={foundImage.url} alt={foundImage.comments}/>
+                        </div>
+
+                        <div className="right-side-container">
+                            <h3>{state.title}</h3>
+                            <h4>{state.comments}</h4>
+                        </div>
+
+                            
+                            <div className="edit-detail-container">
+                                <form className="edit-form-container" onSubmit={handleEdit}>
+                                    Picture Title:<input
+                                        name='title'
+                                        type='text'
+                                        placeholder='title'
+                                        value={state.title}
+                                        onChange={handleChange}
+                                    />
+
+                                    comments:<input
+                                        name='title'
+                                        type='text'
+                                        placeholder='title'
+                                        value={state.comments}
+                                        onChange={handleChange}
+                                    />
+                                    <input className="new-image-submit" type='submit' name='' value='Update' />
+                                </form>
+    1                       </div>               
                     </div>
                 ):
             
