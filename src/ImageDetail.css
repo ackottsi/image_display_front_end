@@ -13,7 +13,7 @@
 
 .edit-button{
 
-    margin-top: 20px;
+    margin-top: 30px;
     border-radius: 100px;
 
 }
@@ -31,9 +31,10 @@
 
 .edit-form-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 5px;
 }
 
 .page-container{
@@ -41,5 +42,22 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+}
+
+.edit-form-container input{
+    margin-top: 10px;
+    width: 200px;
+}
+
+.details-form{
+    height: 50px;
+}
+
+.page-container-edit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 
 }
