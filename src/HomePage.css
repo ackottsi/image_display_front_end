@@ -9,3 +9,19 @@
     height: 200px;
     width: 220px;
     }
+
+
+    .homepage-image-container button{
+      margin-top:10px;
+      background-color: lemonchiffon;
+      border-radius: 20px;
+    }
+
+
+    button:hover {
+      background-color: red;
+      height: 50px;
+      width: 50px;
+      font-size: 20px;
+      
+    }

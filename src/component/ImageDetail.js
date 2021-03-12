@@ -104,6 +104,7 @@ console.log(state.editImage)
                        <h3>{state.title}</h3>
                        <img src={foundImage.url} alt={foundImage.comments}/>
                        <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
+                       <h4>{foundImage.comments}</h4>
                     </div>
                 ):
             
