@@ -10,7 +10,8 @@ function AddImage(props){
         title:'',
         comments:'',
         url:'',
-        date:''
+        date:'',
+        userId:props.userId
     })
 
 
@@ -30,7 +31,8 @@ function AddImage(props){
             title:state.title,
             comments:state.comments,
             url:state.url,
-            date:state.date
+            date:state.date,
+            userId:state.userId
           }
         setState(data)
 

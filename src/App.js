@@ -16,10 +16,12 @@ import Login  from './component/Login'
        apiDataLoaded:false,
        username:'',
        password:'',
-       userId:''
+       userId:'',
+       loggedIn:false
      };
    }
 
+  
   componentDidMount=()=>{
     this.getImages();
     this.getUser();
@@ -29,22 +31,25 @@ import Login  from './component/Login'
   
 
 getImages= async ()=>{
-//   const response= await axios.get("http://localhost:3002/images/all")
-//   console.log(response)
-//   console.log(this.state.images)
-// this.setState({
-//   images: response.data,
-//   apiDataLoaded:true
-// });
+  const response= await axios.get("http://localhost:3002/images/all")
+  console.log(response)
+  console.log(this.state.images)
+this.setState({
+  // images: response.data,
+  apiDataLoaded:true
+});
 }
 
 getUser= async ()=>{
-  const response= await axios.get(`http://localhost:3002/user/profile/1`)
-  console.log(response)
-  this.setState({
-      images: response.data.Images,
-      apiDataLoaded:true
-    });
+  console.log(this.state.loggedIn)
+ 
+      console.log(this.state.userId)
+      const response= await axios.get(`http://localhost:3002/user/profile/${this.state.userId}`)
+      console.log(response)
+      this.setState({
+          images: response.data.Images,
+          apiDataLoaded:true
+        })
 };
 
 
@@ -79,13 +84,9 @@ const data={
 console.log(data);
 const response = await axios.post('http://localhost:3002/auth/login', data);
 console.log(response);
-const userId=this.state.userId
-this.setState({userId:response.data.id})
+this.setState({userId:response.data.id, loggedIn:true})
+this.getUser()
 };
-
-
-  
-  
 
 
    render(){
@@ -98,13 +99,16 @@ this.setState({userId:response.data.id})
             <Header/>
 
             <Switch>
-              <Login handleChange={this.handleChange} userLogin={this.userLogin}
-                username={this.state.username} password={this.state.password} userId={this.state.userId} />
-                <Route exact path="/" render={(routerProps)=>(
+              <Route exact path="/" render={(routerProps)=>(
+                  <Login handleChange={this.handleChange} userLogin={this.userLogin}
+                  username={this.state.username} password={this.state.password} userId={this.state.userId} />
+              )}/>
+
+               <Route exact path="/Gallery" render={(routerProps)=>(
                   <HomePage imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
               )}/>
                 <Route exact path="/AddImage" render={(routerProps)=>(
-                  <AddImage imageData={this.state.images}  {...routerProps}/>
+                  <AddImage imageData={this.state.images} userId={this.state.userId} {...routerProps}/>
                 )}/>
                  <Route exact path="/ImageDetail/:id" render={(routerProps)=>(
                   <ImageDetail imageData={this.state.images} deleteImage={this.deleteImage}  {...routerProps}/>
