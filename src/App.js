@@ -16,7 +16,7 @@ import Login  from './component/Login'
        apiDataLoaded:false,
        username:'',
        password:'',
-       userId:null
+       userId:''
      };
    }
 
@@ -73,12 +73,14 @@ userLogin=async (e)=>{
 
 const data={
   username: this.state.username,
-  password: this.state.password
+  password: this.state.password,
 };
 
 console.log(data);
 const response = await axios.post('http://localhost:3002/auth/login', data);
 console.log(response);
+const userId=this.state.userId
+this.setState({userId:response.data.id})
 };
 
 
@@ -97,7 +99,7 @@ console.log(response);
 
             <Switch>
               <Login handleChange={this.handleChange} userLogin={this.userLogin}
-                username={this.username} password={this.password} userId={this.userId} />
+                username={this.state.username} password={this.state.password} userId={this.state.userId} />
                 <Route exact path="/" render={(routerProps)=>(
                   <HomePage imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
               )}/>

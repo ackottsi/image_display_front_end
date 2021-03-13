@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link, withRouter} from 'react-router-dom'
 import '../Login.css';
-import axios from 'axios'
 
 
 function Login(props){
@@ -13,7 +12,7 @@ function Login(props){
     
         return(  
             <div>
-                {props.id
+                {props.userId
                 ?
                     <h3 className="Signed-In">Welcome {props.username}!</h3>
                 :
