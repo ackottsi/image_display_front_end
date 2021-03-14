@@ -100,8 +100,8 @@ console.log(state.editImage)
                             </div>
 
                             <div className="right-side-container">
-                                <h3>{state.title}</h3>
-                                <h4>{state.comments}</h4>
+                                {/* <h3>{state.title}</h3>
+                                <h4>{state.comments}</h4> */}
                             </div>
                         </div>
                 ):

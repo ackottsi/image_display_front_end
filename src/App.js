@@ -1,24 +1,29 @@
 import './App.css';
 import { Component } from 'react';
 import axios from 'axios';
-import HomePage from './component/HomePage'
+import Gallery from './component/Gallery'
 import AddImage from './component/AddImage'
 import ImageDetail from './component/ImageDetail'
 import {Route, Switch} from 'react-router-dom';
 import Header from './component/Header'
+import Signup  from './component/Signup'
 
  class App extends Component{
    constructor(props){
      super(props);
      this.state={
        images:[],
-       apiDataLoaded:false
+       apiDataLoaded:false,
+       username:'',
+       password:'',
+       userId:'',
+       loggedIn:false
      };
    }
 
+  
   componentDidMount=()=>{
     this.getImages();
-    this.getUser();
   }
 
 
@@ -28,24 +33,23 @@ getImages= async ()=>{
   const response= await axios.get("http://localhost:3002/images/all")
   console.log(response)
   console.log(this.state.images)
-// this.setState({
-//   images: response.data,
-//   apiDataLoaded:true
-// });
+this.setState({
+  // images: response.data,
+  apiDataLoaded:true
+});
 }
 
 getUser= async ()=>{
-  const response= await axios.get("http://localhost:3002/user/profile/1")
-  console.log(response)
-  this.setState({
-      images: response.data.Images,
-      apiDataLoaded:true
-    });
-};
-
-
+  console.log(this.state.loggedIn)
  
-
+      console.log(this.state.userId)
+      const response= await axios.get(`http://localhost:3002/user/profile/${this.state.userId}`)
+      console.log(response)
+      this.setState({
+          images: response.data.Images,
+          apiDataLoaded:true
+        })
+};
 
 
 deleteImage=async image=>{
@@ -56,8 +60,52 @@ deleteImage=async image=>{
  this.setState({images})
 }
   
-  
-  
+updateUserGallery=async()=>{
+  const response= await axios.get(`http://localhost:3002/user/profile/${this.state.userId}`)
+  this.setState({
+    images: response.data.Images
+  })
+}
+
+handleChange=(e)=>{
+  e.preventDefault()
+  const {name,value}=e.target;
+  this.setState(prevState=>({
+      ...prevState,          
+      [name]:value
+  }))
+}
+
+
+userLogin=async (e)=>{
+  e.preventDefault();
+
+const data={
+  username: this.state.username,
+  password: this.state.password,
+};
+
+console.log(data);
+const response = await axios.post('http://localhost:3002/auth/login', data);
+console.log(response);
+this.setState({userId:response.data.id, loggedIn:true})
+this.getUser()
+};
+
+
+
+userSignup=async (e)=>{
+  e.preventDefault();
+
+const data={
+  username: this.state.username,
+  password: this.state.password,
+};
+
+console.log(data);
+const response = await axios.post('http://localhost:3002/auth/signup', data);
+console.log(response);
+};
 
 
    render(){
@@ -67,14 +115,21 @@ deleteImage=async image=>{
       {this.state.apiDataLoaded ?  
           <div className="App">
 
-            <Header/>
+            <Header handleChange={this.handleChange} userLogin={this.userLogin}
+                  username={this.state.username} password={this.state.password} userId={this.state.userId} />
+                  
 
             <Switch>
-                <Route exact path="/" render={(routerProps)=>(
-                  <HomePage imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
+              <Route exact path="/Signup" render={(routerProps)=>(
+                  <Signup handleChange={this.handleChange} userSignup={this.userSignup}
+                  username={this.state.username} password={this.state.password} userId={this.state.userId} />
+              )}/>
+
+               <Route exact path="/Gallery" render={(routerProps)=>(
+                  <Gallery imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
               )}/>
                 <Route exact path="/AddImage" render={(routerProps)=>(
-                  <AddImage imageData={this.state.images}  {...routerProps}/>
+                  <AddImage imageData={this.state.images} userId={this.state.userId} getImages={this.updateUserGallery}  {...routerProps}/>
                 )}/>
                  <Route exact path="/ImageDetail/:id" render={(routerProps)=>(
                   <ImageDetail imageData={this.state.images} deleteImage={this.deleteImage}  {...routerProps}/>
