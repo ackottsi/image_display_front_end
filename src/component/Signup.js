@@ -41,4 +41,4 @@ function Signup(props){
 }
 
 
-export default withRouter(Login);
+export default withRouter(Signup);

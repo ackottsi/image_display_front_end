@@ -39,7 +39,7 @@ function Login(props){
                             />
                         </form>
                         <div className="Register-Link">
-                            <h4 className="Signup-Here">Not a user?<br/>Sign up<br></br> {<Link to="/Register"> Here</Link>}</h4>
+                            <h4 className="Signup-Here">Not a user?<br/>Sign up<br></br> {<Link to="/Signup"> Here</Link>}</h4>
                         </div>
                     </div>}
             </div>

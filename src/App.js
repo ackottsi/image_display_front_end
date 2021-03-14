@@ -6,7 +6,7 @@ import AddImage from './component/AddImage'
 import ImageDetail from './component/ImageDetail'
 import {Route, Switch} from 'react-router-dom';
 import Header from './component/Header'
-import Login  from './component/Login'
+import Signup  from './component/Signup'
 
  class App extends Component{
    constructor(props){
@@ -109,7 +109,7 @@ signUpUser
 
             <Switch>
               <Route exact path="/Signup" render={(routerProps)=>(
-                  <Login handleChange={this.handleChange} userLogin={this.userLogin}
+                  <Signup handleChange={this.handleChange} userLogin={this.userLogin}
                   username={this.state.username} password={this.state.password} userId={this.state.userId} />
               )}/>
 
