@@ -12,8 +12,10 @@ function Signup(props){
     
         return(  
             <div>
-                    <div className="Login-Container">      
+                    <div className="Login-Container">  
+                    
                         <form className="Login-Form"  onSubmit={props.userSignup}>
+                        <h1>Sign Up</h1>
                             <label className="Login-Label" htmlFor="username">username</label>
                             <input className="Login-Input"
                                 type="text"
