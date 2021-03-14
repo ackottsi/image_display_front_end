@@ -108,10 +108,10 @@ signUpUser
                   
 
             <Switch>
-              {/* <Route exact path="/" render={(routerProps)=>(
+              <Route exact path="/Signup" render={(routerProps)=>(
                   <Login handleChange={this.handleChange} userLogin={this.userLogin}
                   username={this.state.username} password={this.state.password} userId={this.state.userId} />
-              )}/> */}
+              )}/>
 
                <Route exact path="/Gallery" render={(routerProps)=>(
                   <HomePage imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
