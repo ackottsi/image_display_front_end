@@ -89,6 +89,13 @@ this.getUser()
 };
 
 
+
+signUpUser
+
+
+
+
+
    render(){
 
   return (
@@ -96,13 +103,15 @@ this.getUser()
       {this.state.apiDataLoaded ?  
           <div className="App">
 
-            <Header/>
+            <Header handleChange={this.handleChange} userLogin={this.userLogin}
+                  username={this.state.username} password={this.state.password} userId={this.state.userId} />
+                  
 
             <Switch>
-              <Route exact path="/" render={(routerProps)=>(
+              {/* <Route exact path="/" render={(routerProps)=>(
                   <Login handleChange={this.handleChange} userLogin={this.userLogin}
                   username={this.state.username} password={this.state.password} userId={this.state.userId} />
-              )}/>
+              )}/> */}
 
                <Route exact path="/Gallery" render={(routerProps)=>(
                   <HomePage imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
