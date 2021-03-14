@@ -1,8 +1,8 @@
 import React from 'react';
-import '../HomePage.css';
+import '../Gallery.css';
 import {Link} from 'react-router-dom'
 
-const HomePage = (props) => {
+const Gallery = (props) => {
     console.log(props)
 
 
@@ -28,4 +28,4 @@ const HomePage = (props) => {
     );
 }
 
-export default HomePage;
+export default Gallery;

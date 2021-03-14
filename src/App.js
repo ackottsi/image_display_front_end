@@ -1,7 +1,7 @@
 import './App.css';
 import { Component } from 'react';
 import axios from 'axios';
-import HomePage from './component/HomePage'
+import Gallery from './component/Gallery'
 import AddImage from './component/AddImage'
 import ImageDetail from './component/ImageDetail'
 import {Route, Switch} from 'react-router-dom';
@@ -114,7 +114,7 @@ signUpUser
               )}/>
 
                <Route exact path="/Gallery" render={(routerProps)=>(
-                  <HomePage imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
+                  <Gallery imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
               )}/>
                 <Route exact path="/AddImage" render={(routerProps)=>(
                   <AddImage imageData={this.state.images} userId={this.state.userId} {...routerProps}/>
