@@ -25,22 +25,25 @@ function AddImage(props){
         }))
     }
 
-       const handleSubmit= async (e)=>{
+       const handleSubmit=async (e)=>{
+           console.log("I ran")
         e.preventDefault();
         const data={
             title:state.title,
-            comments:state.comments,
-            url:state.url,
-            date:state.date,
-            userId:state.userId
+            // comments:state.comments,
+            // url:state.url,
+            // date:state.date,
+            // userId:state.userId
           }
-        setState(data)
+   
+        console.log("line 39")
 
-    const response= await axios.post('http://localhost:3002/images/all',data)
+    const response= await axios.post('http://localhost:3002/images/postimage',data);
           console.log(response)
-
-    }
-
+          console.log("checking this one")
+          props.getImages()
+          setState(data)
+        }
 
 
 

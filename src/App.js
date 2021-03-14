@@ -73,18 +73,18 @@ handleChange=(e)=>{
 
 
 userLogin=async (e)=>{
-//   e.preventDefault();
+  e.preventDefault();
 
-// const data={
-//   username: this.state.username,
-//   password: this.state.password,
-// };
+const data={
+  username: this.state.username,
+  password: this.state.password,
+};
 
-// console.log(data);
-// const response = await axios.post('http://localhost:3002/auth/login', data);
-// console.log(response);
-// this.setState({userId:response.data.id, loggedIn:true})
-// this.getUser()
+console.log(data);
+const response = await axios.post('http://localhost:3002/auth/login', data);
+console.log(response);
+this.setState({userId:response.data.id, loggedIn:true})
+this.getUser()
 };
 
 
@@ -124,7 +124,7 @@ console.log(response);
                   <Gallery imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
               )}/>
                 <Route exact path="/AddImage" render={(routerProps)=>(
-                  <AddImage imageData={this.state.images} userId={this.state.userId} {...routerProps}/>
+                  <AddImage imageData={this.state.images} userId={this.state.userId} getImages={this.getImages}  {...routerProps}/>
                 )}/>
                  <Route exact path="/ImageDetail/:id" render={(routerProps)=>(
                   <ImageDetail imageData={this.state.images} deleteImage={this.deleteImage}  {...routerProps}/>
