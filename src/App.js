@@ -24,7 +24,6 @@ import Signup  from './component/Signup'
   
   componentDidMount=()=>{
     this.getImages();
-    this.getUser();
   }
 
 
@@ -74,6 +73,23 @@ handleChange=(e)=>{
 
 
 userLogin=async (e)=>{
+//   e.preventDefault();
+
+// const data={
+//   username: this.state.username,
+//   password: this.state.password,
+// };
+
+// console.log(data);
+// const response = await axios.post('http://localhost:3002/auth/login', data);
+// console.log(response);
+// this.setState({userId:response.data.id, loggedIn:true})
+// this.getUser()
+};
+
+
+
+userSignup=async (e)=>{
   e.preventDefault();
 
 const data={
@@ -82,18 +98,9 @@ const data={
 };
 
 console.log(data);
-const response = await axios.post('http://localhost:3002/auth/login', data);
+const response = await axios.post('http://localhost:3002/auth/signup', data);
 console.log(response);
-this.setState({userId:response.data.id, loggedIn:true})
-this.getUser()
 };
-
-
-
-signUpUser
-
-
-
 
 
    render(){
@@ -109,7 +116,7 @@ signUpUser
 
             <Switch>
               <Route exact path="/Signup" render={(routerProps)=>(
-                  <Signup handleChange={this.handleChange} userLogin={this.userLogin}
+                  <Signup handleChange={this.handleChange} userSignup={this.userSignup}
                   username={this.state.username} password={this.state.password} userId={this.state.userId} />
               )}/>
 

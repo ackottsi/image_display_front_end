@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import '../Login.css';
 
 
@@ -13,7 +13,7 @@ function Signup(props){
         return(  
             <div>
                     <div className="Login-Container">      
-                        <form className="Login-Form"  onSubmit={props.userLogin}>
+                        <form className="Login-Form"  onSubmit={props.userSignup}>
                             <label className="Login-Label" htmlFor="username">username</label>
                             <input className="Login-Input"
                                 type="text"
