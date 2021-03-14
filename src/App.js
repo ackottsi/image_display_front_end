@@ -60,7 +60,12 @@ deleteImage=async image=>{
  this.setState({images})
 }
   
-
+updateUserGallery=async()=>{
+  const response= await axios.get(`http://localhost:3002/user/profile/${this.state.userId}`)
+  this.setState({
+    images: response.data.Images
+  })
+}
 
 handleChange=(e)=>{
   e.preventDefault()
@@ -124,7 +129,7 @@ console.log(response);
                   <Gallery imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
               )}/>
                 <Route exact path="/AddImage" render={(routerProps)=>(
-                  <AddImage imageData={this.state.images} userId={this.state.userId} getImages={this.getImages}  {...routerProps}/>
+                  <AddImage imageData={this.state.images} userId={this.state.userId} getImages={this.updateUserGallery}  {...routerProps}/>
                 )}/>
                  <Route exact path="/ImageDetail/:id" render={(routerProps)=>(
                   <ImageDetail imageData={this.state.images} deleteImage={this.deleteImage}  {...routerProps}/>

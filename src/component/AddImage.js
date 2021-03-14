@@ -5,7 +5,7 @@ import '../AddImage.css';
 
 
 function AddImage(props){
-    console.log(props)
+    console.log(props.userId)
     const[state,setState]=useState({
         title:'',
         comments:'',
@@ -30,19 +30,20 @@ function AddImage(props){
         e.preventDefault();
         const data={
             title:state.title,
-            // comments:state.comments,
-            // url:state.url,
-            // date:state.date,
-            // userId:state.userId
+            comments:state.comments,
+            url:state.url,
+            date:state.date,
+            userId:props.userId
           }
    
         console.log("line 39")
+        setState(data)
 
-    const response= await axios.post('http://localhost:3002/images/postimage',data);
+    const response= await axios.post('http://localhost:3002/images/postimage',data)
           console.log(response)
           console.log("checking this one")
           props.getImages()
-          setState(data)
+          
         }
 
 
