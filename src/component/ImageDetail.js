@@ -140,9 +140,9 @@ console.log(state.editImage)
                                 <img src={foundImage.url} alt={foundImage.comments}/> 
                             </div>
                             <div className="right-side-container">
-                                <h3>{state.title}</h3>
-                                <h4>{state.comments}</h4>
-                                <h4>{state.date}</h4>
+                                <h3 className="detail-body"><span className="detail-title">Title:</span> {state.title}</h3>
+                                <h4 className="detail-body"><span className="detail-title">Memory:</span> {state.comments}</h4>
+                                <h4 className="detail-body"><span className="detail-title">Date:</span> {state.date}</h4>
                                 <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
 
                             </div>

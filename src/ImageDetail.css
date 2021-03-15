@@ -62,3 +62,12 @@
     justify-content: flex-start;
 
 }
+
+.detail-title{
+    font-weight: bolder;
+    font-style: normal;
+}
+
+.detail-body{
+    font-style: italic;
+}
