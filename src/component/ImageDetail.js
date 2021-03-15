@@ -44,8 +44,9 @@ const ImageDetail=(props)=>{
 
        const res= await axios.put(`http://localhost:3002/images/${props.match.params.id}`,data)
         console.log(res)
+        console.log("I ran")
+        console.log(foundImage)
         const updatedData=res.data;
-        console.log(state.title)
         setState({title:updatedData.title, comments:updatedData.comments, date:state.date, editImage:false});
       
         // props.history.push(`/ImageDetail/${foundImage.id}`)
@@ -61,6 +62,9 @@ const ImageDetail=(props)=>{
         // console.log(state.title)
         setState({editImage:true})
     }
+
+    const displayDate=new Date(state.date);
+    console.log(displayDate)
 
 console.log(state.editImage)
   if (state.editImage===true){    
