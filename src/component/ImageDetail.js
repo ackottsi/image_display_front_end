@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 
 const ImageDetail=(props)=>{
+    console.log(props.match.params)
     const foundImage=props.imageData.find(image=>{
         return image.id===parseInt(props.match.params.id)
     });
@@ -32,20 +33,20 @@ const ImageDetail=(props)=>{
 
        const handleEdit= async (e)=>{
         e.preventDefault();
-        console.log(props)
+        console.log(foundImage)
         const data={
+
             title:state.title,
-            comments:state.comments
-            // url:state.url,
-            // date:state.date
+            comments:state.comments,
+            date:state.date
         }
         console.log(data)
 
-       const res= await axios.put(`http://localhost:3002/images/${foundImage.id}`,data)
+       const res= await axios.put(`http://localhost:3002/images/${props.match.params.id}`,data)
         console.log(res)
         const updatedData=res.data;
         console.log(state.title)
-        setState({title:updatedData.title, comments:updatedData.comments, editImage:false});
+        setState({title:updatedData.title, comments:updatedData.comments, date:state.date, editImage:false});
       
         // props.history.push(`/ImageDetail/${foundImage.id}`)
 
@@ -76,30 +77,40 @@ console.log(state.editImage)
                             
 
                                 
-                                <div className="edit-detail-container">
-                                    <form className="edit-form-container" onSubmit={handleEdit}>
-                                        Picture Title:<input
-                                            name='title'
-                                            type='text'
-                                            placeholder='title'
-                                            value={state.title}
-                                            defaultValue={foundImage.title}
-                                            onChange={handleChange}
-                                        /><br></br>
-
-                                        Details:<input className="details-form"
-                                            name='comments'
-                                            type='text'
-                                            placeholder='comments'
-                                            value={state.comments}
-                                            onChange={handleChange}
-                                        /><br></br>
-                                        <input className="edit-button" type='submit' name='' value='Update' />
-                                    </form>
-                                </div> 
+                             
                             </div>
 
                             <div className="right-side-container">
+                                <div className="edit-detail-container">
+                                        <form className="edit-form-container" onSubmit={handleEdit}>
+                                            Picture Title:<input
+                                                name='title'
+                                                type='text'
+                                                placeholder='title'
+                                                value={state.title}
+                                                defaultValue={foundImage.title}
+                                                onChange={handleChange}
+                                            /><br></br>
+
+                                            Details:<input className="details-form"
+                                                name='comments'
+                                                type='text'
+                                                placeholder='comments'
+                                                value={state.comments}
+                                                defaultValue={foundImage.comments}
+                                                onChange={handleChange}
+                                            /><br></br>
+                                           Date:<input 
+                                                name='date'
+                                                type='date'
+                                                placeholder='date'
+                                                value={state.comments}
+                                                defaultValue={foundImage.date}
+                                                onChange={handleChange}
+                                            /><br></br>
+                                            <input className="edit-button" type='submit' name='' value='Update' />
+                                        </form>
+                                    </div> 
                                 {/* <h3>{state.title}</h3>
                                 <h4>{state.comments}</h4> */}
                             </div>
@@ -127,6 +138,7 @@ console.log(state.editImage)
                             <div className="right-side-container">
                                 <h3>{state.title}</h3>
                                 <h4>{state.comments}</h4>
+                                <h4>{state.date}</h4>
                                 <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
 
                             </div>
