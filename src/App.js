@@ -17,7 +17,9 @@ import Signup  from './component/Signup'
        username:'',
        password:'',
        userId:'',
-       loggedIn:false
+       loggedIn:false,
+       usernameSignUp:'',
+       passwordSignUp:''
      };
    }
 
@@ -77,6 +79,17 @@ handleChange=(e)=>{
 }
 
 
+handleChangeSignUp=(e)=>{
+  e.preventDefault()
+  const {name,value}=e.target;
+  this.setState(prevState=>({
+      ...prevState,          
+      [name]:value
+  }))
+}
+
+
+
 userLogin=async (e)=>{
   e.preventDefault();
 
@@ -98,8 +111,8 @@ userSignup=async (e)=>{
   e.preventDefault();
 
 const data={
-  username: this.state.username,
-  password: this.state.password,
+  username: this.state.usernameSignUp,
+  password: this.state.passwordSignUp,
 };
 
 console.log(data);
@@ -121,8 +134,8 @@ console.log(response);
 
             <Switch>
               <Route exact path="/Signup" render={(routerProps)=>(
-                  <Signup handleChange={this.handleChange} userSignup={this.userSignup}
-                  username={this.state.username} password={this.state.password} userId={this.state.userId} {...routerProps}/>
+                  <Signup handleChangeSignUp={this.handleChangeSignUp} userSignup={this.userSignup}
+                  usernameSignUp={this.state.usernameSignUp} passwordSignUp={this.state.passwordSignUp} userId={this.state.userId} {...routerProps}/>
               )}/>
 
                <Route exact path="/Gallery" render={(routerProps)=>(

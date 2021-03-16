@@ -15,20 +15,20 @@ function Signup(props){
                     <div className="Login-Container">  
                     
                         <form className="Login-Form"  onSubmit={props.userSignup}>
-                        <h1>Sign Up</h1>
+                            
                             <label className="Login-Label" htmlFor="username">username</label>
                             <input className="Login-Input"
                                 type="text"
-                                name="username"
-                                value={props.username}
-                                onChange={props.handleChange}
+                                name="usernameSignUp"
+                                value={props.usernameSignUp}
+                                onChange={props.handleChangeSignUp}
                             />
                             <label className="Login-Label" htmlFor="password">Password</label>
                             <input className="Login-Input"
                                 type="password"
-                                name="password"
-                                value={props.password}
-                                onChange={props.handleChange}
+                                name="passwordSignUp"
+                                value={props.passwordSignUp}
+                                onChange={props.handleChangeSignUp}
                             />
                             <input 
                                 className="Login-Submit" 
