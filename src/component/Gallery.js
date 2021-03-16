@@ -1,31 +1,73 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../Gallery.css';
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
+
 
 const Gallery = (props) => {
-    console.log(props)
+
+  const[state,setState]=useState({
+  removeImage:false,
+  deleteButtonValue:"Enable Delete"
+})
+
+ const handleRemoveRender=(e)=>{
+   e.preventDefault();
+   if(state.removeImage===true){
+      setState({removeImage:!state.removeImage, deleteButtonValue:"Enable Delete"})
+   }
+   else{      
+     setState({removeImage:!state.removeImage, deleteButtonValue:"Disable Delete"})
+   }
+ 
+}
+
+ 
 
 
     const images=props.imageData.map((image,index)=>{
+        if(state.removeImage===true){
 
-        return(
-          <div className="homepage-image-container" key={image.id}>
-            {/* <h3>{image.title}</h3> */}
-            <Link to={`/ImageDetail/${image.id}`}>
-              <img src={image.url} alt='test' />
-            </Link>
-              <button id={image.id} onClick={()=>props.deleteImage(image)}>x</button>
-          </div>
-  
-        )
-      })
+            return(
+              <div className="homepage-image-container" key={image.id}>
+                {/* <h3>{image.title}</h3> */}
+                <Link to={`/ImageDetail/${image.id}`}>
+                  <img src={image.url} alt='test' />
+                </Link>
+                  <button className="delete-button" id={image.id} onClick={()=>props.deleteImage(image)}>x</button>
+              </div>
+      
+            )
+          }
+
+        else{
+          return(
+              <div className="homepage-image-container" key={image.id}>
+              {/* <h3>{image.title}</h3> */}
+              <Link to={`/ImageDetail/${image.id}`}>
+                <img src={image.url} alt='test' />
+              </Link>
+                {/* <button className="delete-button" id={image.id} onClick={()=>props.deleteImage(image)}>x</button> */}
+            </div>
+          )
+        }
+
+    })  
+      
 
     return(
 
+      <div className="page-container-with-toggle-button">
+               <form onSubmit={handleRemoveRender}>
+              <input className="remove-toggle" type="submit" value={state.deleteButtonValue}/>
+            </form>
         <div className="HomePage">
+     
             {images}
         </div>
+      </div>
+
+
     );
 }
 
-export default Gallery;
+export default withRouter(Gallery);
