@@ -19,7 +19,6 @@ const ImageDetail=(props)=>{
     })
 
 
-
     const handleChange=(e)=>{
        
         e.preventDefault()
