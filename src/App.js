@@ -108,7 +108,10 @@ this.getUser()
 this.props.history.push('/')
 };
 
-
+logout=(e)=>{
+  e.preventDefault();
+  this.setState({loggedIn:false})
+}
 
 userSignup=async (e)=>{
   e.preventDefault();
@@ -139,7 +142,8 @@ console.log(response);
             <Switch>
             
             <Route exact path="/" render={(routerProps)=>(
-                  <HomePage username={this.state.username} loggedIn={this.state.loggedIn} {...routerProps}/>
+                  <HomePage username={this.state.username} loggedIn={this.state.loggedIn}
+                  logout={this.logout} {...routerProps}/>
               )}/>
 
               <Route exact path="/Signup" render={(routerProps)=>(

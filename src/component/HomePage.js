@@ -13,9 +13,10 @@ function HomePage (props){
         return(  
             <div>
                     <div className="HomePage-Container">  
-                    
-                   Hello {props.username}!
-                    
+                   Hello {props.username}!   
+                   <form>
+                       <input type="submit" value="Log Out" onSubmit={props.logout} />
+                   </form>              
                     </div>
             </div>
         )
