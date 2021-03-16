@@ -4,10 +4,10 @@ import axios from 'axios';
 import Gallery from './component/Gallery'
 import AddImage from './component/AddImage'
 import ImageDetail from './component/ImageDetail'
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import Header from './component/Header'
 import Signup  from './component/Signup'
-
+import HomePage from './component/HomePage'
  class App extends Component{
    constructor(props){
      super(props);
@@ -99,10 +99,13 @@ const data={
 };
 
 console.log(data);
+
 const response = await axios.post('http://localhost:3002/auth/login', data);
 console.log(response);
+console.log(this.props)
 this.setState({userId:response.data.id, loggedIn:true})
 this.getUser()
+this.props.history.push('/')
 };
 
 
@@ -118,6 +121,7 @@ const data={
 console.log(data);
 const response = await axios.post('http://localhost:3002/auth/signup', data);
 console.log(response);
+
 };
 
 
@@ -133,6 +137,11 @@ console.log(response);
                   
 
             <Switch>
+            
+            <Route exact path="/" render={(routerProps)=>(
+                  <HomePage username={this.state.username} loggedIn={this.state.loggedIn} {...routerProps}/>
+              )}/>
+
               <Route exact path="/Signup" render={(routerProps)=>(
                   <Signup handleChangeSignUp={this.handleChangeSignUp} userSignup={this.userSignup}
                   usernameSignUp={this.state.usernameSignUp} passwordSignUp={this.state.passwordSignUp} userId={this.state.userId} {...routerProps}/>
@@ -160,4 +169,4 @@ console.log(response);
       );
     }
   }
-export default App;
+export default withRouter(App);
