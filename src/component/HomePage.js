@@ -1,6 +1,5 @@
 import React from 'react';
-
-import '../Login.css';
+import '../HomePage.css';
 
 
 function HomePage (props){
@@ -13,7 +12,7 @@ function HomePage (props){
         return(  
             <div>
                     <div className="HomePage-Container">  
-                   Hello {props.username}!   
+                   <h1>Hello {props.username}!</h1>   
                    <form>
                        <input type="submit" value="Log Out" onSubmit={props.logout} />
                    </form>              
@@ -23,8 +22,8 @@ function HomePage (props){
 
     else{
         return(
-            <div>
-                No User Logged In
+            <div className="HomePage-Container">
+               <h1>No User Logged In</h1>
             </div>
         )
     }

@@ -124,7 +124,7 @@ const data={
 console.log(data);
 const response = await axios.post('http://localhost:3002/auth/signup', data);
 console.log(response);
-
+this.props.history.push('/')
 };
 
 
