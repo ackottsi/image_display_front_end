@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 const ImageDetail=(props)=>{
     console.log(props.match.params)
     const foundImage=props.imageData.find(image=>{
+        console.log(image)
         return image.id===parseInt(props.match.params.id)
     });
     const[state,setState]=useState({

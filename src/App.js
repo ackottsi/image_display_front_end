@@ -122,7 +122,7 @@ console.log(response);
             <Switch>
               <Route exact path="/Signup" render={(routerProps)=>(
                   <Signup handleChange={this.handleChange} userSignup={this.userSignup}
-                  username={this.state.username} password={this.state.password} userId={this.state.userId} />
+                  username={this.state.username} password={this.state.password} userId={this.state.userId} {...routerProps}/>
               )}/>
 
                <Route exact path="/Gallery" render={(routerProps)=>(
