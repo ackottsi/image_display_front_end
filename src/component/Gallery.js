@@ -37,7 +37,6 @@ const Gallery = (props) => {
 
             return(
               <div className="homepage-image-container" key={image.id}>
-                {/* <h3>{image.title}</h3> */}
                 <Link to={`/ImageDetail/${image.id}`}>
                   <img src={image.url} alt='test' />
                 </Link>
@@ -50,11 +49,10 @@ const Gallery = (props) => {
         else{
           return(
               <div className="homepage-image-container" key={image.id}>
-              {/* <h3>{image.title}</h3> */}
+
               <Link to={`/ImageDetail/${image.id}`}>
                 <img src={image.url} alt='test' />
               </Link>
-                {/* <button className="delete-button" id={image.id} onClick={()=>props.deleteImage(image)}>x</button> */}
             </div>
           )
         }

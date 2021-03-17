@@ -6,6 +6,7 @@
   }
 
   .HomePage img{
+    margin-top: 25px;
     height: 200px;
     width: 220px;
     }
@@ -13,8 +14,8 @@
 
     .delete-button{
       position: absolute;
-      top:2px;
-      right: 2px;
+      top:25px;
+      right:1px;
       background-color: black;
       border-radius: 20px;
       color:white;
@@ -49,4 +50,6 @@
       border-radius: 10px;
     }
 
-    
+    .homepage-image-container{
+      position: relative;
+    }
