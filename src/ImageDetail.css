@@ -10,6 +10,7 @@
         align-items: center;
         margin-top: 40px;
         margin-bottom: 40px;
+        margin-left: 10px;
     }
 
 .edit-button{
@@ -23,8 +24,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-left: 100px;
-    text-align: center;
+    margin-left: 80px;
+    text-align: left;
 }
 
 

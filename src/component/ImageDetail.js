@@ -10,20 +10,22 @@ const ImageDetail=(props)=>{
         console.log(image)
         return image.id===parseInt(props.match.params.id)
     });
+
+    //https://stackoverflow.com/questions/46228846/how-to-format-javascript-date-to-mm-dd-yyyy
+    //used for formatting date on image detail page
+    let date=new Date(foundImage.date);
+    let newDate=(date.getMonth() + 1) + '/' + (date.getDate()+1) + '/' +  date.getFullYear();
+
     const[state,setState]=useState({
         title:foundImage.title,
         comments:foundImage.comments,
         url:foundImage.url,
-        date:foundImage.date,
+        date:newDate,
         editImage:false
     })
 
-
     const handleChange=(e)=>{
-       
         e.preventDefault()
-        console.log(state.title)
-        console.log(e.target)
         const {name,value}=e.target;
         setState(prevState=>({
             ...prevState,          
@@ -31,59 +33,36 @@ const ImageDetail=(props)=>{
         }))
     }
 
-       const handleEdit= async (e)=>{
+    const handleEdit= async (e)=>{
         e.preventDefault();
-        console.log(foundImage)
+        let date=new Date(state.date);
+        let newDate=(date.getMonth() + 1) + '/' + (date.getDate()+1) + '/' +  date.getFullYear();    
         const data={
-
             title:state.title,
             comments:state.comments,
-            date:state.date
+            date:newDate
         }
-        console.log(data)
-
-       const res= await axios.put(`http://localhost:3002/images/${props.match.params.id}`,data)
-        console.log(res)
-        console.log("I ran")
-        console.log(foundImage)
+        const res= await axios.put(`http://localhost:3002/images/${props.match.params.id}`,data)
         const updatedData=res.data;
-        setState({title:updatedData.title, comments:updatedData.comments, date:state.date, editImage:false});
-      
-        // props.history.push(`/ImageDetail/${foundImage.id}`)
-
-  }
+        setState({title:updatedData.title, comments:updatedData.comments, date:newDate, editImage:false})
+    }
 
 
     const handleViewRender=()=>{
-        // const response= await axios.get(`http://localhost:3002/images/${foundImage.id}`)
-            // console.log(response)
-            // const data=response.data          
-        console.log("edit button test")
-        // console.log(state.title)
         setState({editImage:true})
     }
 
     const displayDate=new Date(state.date);
-    console.log(displayDate)
 
-console.log(state.editImage)
   if (state.editImage===true){    
-      console.log(state.title)
-      
-        return(
-            
+        return(     
             <div className="image-detail-container">
                 {foundImage ? (
 
                         <div className="page-container-edit">
                             <div className="left-side-container">      
-                                <img src={foundImage.url} alt={foundImage.comments}/>
-                            
-
-                                
-                             
+                                <img src={foundImage.url} alt={foundImage.comments}/>                                                    
                             </div>
-
                             <div className="right-side-container">
                                 <div className="edit-detail-container">
                                         <form className="edit-form-container" onSubmit={handleEdit}>
@@ -109,14 +88,12 @@ console.log(state.editImage)
                                                 type='date'
                                                 placeholder='date'
                                                 value={state.comments}
-                                                defaultValue={foundImage.date}
+                                                defaultValue={newDate}
                                                 onChange={handleChange}
                                             /><br></br>
                                             <input className="edit-button" type='submit' name='' value='Update' />
                                         </form>
                                     </div> 
-                                {/* <h3>{state.title}</h3>
-                                <h4>{state.comments}</h4> */}
                             </div>
                         </div>
                 ):
@@ -128,10 +105,7 @@ console.log(state.editImage)
     }
 
     else{
-        console.log(state.title)
         return(
-            
-            
             <div>
                 {foundImage ? (
                     <div className="page-container">
@@ -140,7 +114,7 @@ console.log(state.editImage)
                                 <img src={foundImage.url} alt={foundImage.comments}/> 
                             </div>
                             <div className="right-side-container">
-                                <h3 className="detail-body"><span className="detail-title">Title:</span> {state.title}</h3>
+                                <h4 className="detail-body"><span className="detail-title">Title:</span> {state.title}</h4>
                                 <h4 className="detail-body"><span className="detail-title">Memory:</span> {state.comments}</h4>
                                 <h4 className="detail-body"><span className="detail-title">Date:</span> {state.date}</h4>
                                 <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
