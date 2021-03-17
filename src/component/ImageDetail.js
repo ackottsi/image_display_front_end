@@ -52,84 +52,83 @@ const ImageDetail=(props)=>{
         setState({editImage:true})
     }
 
-    const displayDate=new Date(state.date);
+    
+        if (state.editImage===true){    
+            return(     
+                <div className="image-detail-container">
+                    {foundImage ? (
 
-  if (state.editImage===true){    
-        return(     
-            <div className="image-detail-container">
-                {foundImage ? (
+                            <div className="page-container-edit">
+                                <div className="left-side-container">      
+                                    <img src={foundImage.url} alt={foundImage.comments}/>                                                    
+                                </div>
+                                <div className="right-side-container">
+                                    <div className="edit-detail-container">
+                                            <form className="edit-form-container" onSubmit={handleEdit}>
+                                                Picture Title:<input
+                                                    name='title'
+                                                    type='text'
+                                                    placeholder='title'
+                                                    value={state.title}
+                                                    defaultValue={foundImage.title}
+                                                    onChange={handleChange}
+                                                /><br></br>
 
-                        <div className="page-container-edit">
-                            <div className="left-side-container">      
-                                <img src={foundImage.url} alt={foundImage.comments}/>                                                    
+                                                Details:<input className="details-form"
+                                                    name='comments'
+                                                    type='text'
+                                                    placeholder='comments'
+                                                    value={state.comments}
+                                                    defaultValue={foundImage.comments}
+                                                    onChange={handleChange}
+                                                /><br></br>
+                                            Date:<input 
+                                                    name='date'
+                                                    type='date'
+                                                    placeholder='date'
+                                                    value={state.comments}
+                                                    defaultValue={newDate}
+                                                    onChange={handleChange}
+                                                /><br></br>
+                                                <input className="edit-button" type='submit' name='' value='Update' />
+                                            </form>
+                                        </div> 
+                                </div>
                             </div>
-                            <div className="right-side-container">
-                                <div className="edit-detail-container">
-                                        <form className="edit-form-container" onSubmit={handleEdit}>
-                                            Picture Title:<input
-                                                name='title'
-                                                type='text'
-                                                placeholder='title'
-                                                value={state.title}
-                                                defaultValue={foundImage.title}
-                                                onChange={handleChange}
-                                            /><br></br>
+                    ):
+                
+                        <h1>No Image found</h1>
+                    }
+                </div>
+            )
+        }
 
-                                            Details:<input className="details-form"
-                                                name='comments'
-                                                type='text'
-                                                placeholder='comments'
-                                                value={state.comments}
-                                                defaultValue={foundImage.comments}
-                                                onChange={handleChange}
-                                            /><br></br>
-                                           Date:<input 
-                                                name='date'
-                                                type='date'
-                                                placeholder='date'
-                                                value={state.comments}
-                                                defaultValue={newDate}
-                                                onChange={handleChange}
-                                            /><br></br>
-                                            <input className="edit-button" type='submit' name='' value='Update' />
-                                        </form>
-                                    </div> 
-                            </div>
-                        </div>
-                ):
-            
-                    <h1>No Image found</h1>
-                }
-            </div>
-        )
-    }
+        else{
+            return(
+                <div>
+                    {foundImage ? (
+                        <div className="page-container">
+                            <div className="image-detail-container">
+                                <div className="left-side-container">    
+                                    <img src={foundImage.url} alt={foundImage.comments}/> 
+                                </div>
+                                <div className="right-side-container">
+                                    <h4 className="detail-body"><span className="detail-title">Title:</span> {state.title}</h4>
+                                    <h4 className="detail-body"><span className="detail-title">Memory:</span> {state.comments}</h4>
+                                    <h4 className="detail-body"><span className="detail-title">Date:</span> {state.date}</h4>
+                                    <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
 
-    else{
-        return(
-            <div>
-                {foundImage ? (
-                    <div className="page-container">
-                        <div className="image-detail-container">
-                            <div className="left-side-container">    
-                                <img src={foundImage.url} alt={foundImage.comments}/> 
+                                </div>
+                            
                             </div>
-                            <div className="right-side-container">
-                                <h4 className="detail-body"><span className="detail-title">Title:</span> {state.title}</h4>
-                                <h4 className="detail-body"><span className="detail-title">Memory:</span> {state.comments}</h4>
-                                <h4 className="detail-body"><span className="detail-title">Date:</span> {state.date}</h4>
-                                <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
-
-                            </div>
-                           
-                        </div>
-                    </div>    
-                ):
-            
-                    <h1>No Image found</h1>
-                }
-            </div>
-        )
-    }
+                        </div>    
+                    ):
+                
+                        <h1>No Image found</h1>
+                    }
+                </div>
+            )
+        }
 }
 
 

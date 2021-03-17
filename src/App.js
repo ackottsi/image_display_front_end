@@ -152,17 +152,20 @@ this.props.history.push('/')
               )}/>
 
                <Route exact path="/Gallery" render={(routerProps)=>(
-                  <Gallery imageData={this.state.images} deleteImage={this.deleteImage} {...routerProps}/>
+                  <Gallery imageData={this.state.images} deleteImage={this.deleteImage} 
+                  loggedIn={this.state.loggedIn} {...routerProps}/>
               )}/>
+
                 <Route exact path="/AddImage" render={(routerProps)=>(
-                  <AddImage imageData={this.state.images} userId={this.state.userId} getImages={this.updateUserGallery}  {...routerProps}/>
+                  <AddImage imageData={this.state.images} userId={this.state.userId}
+                  loggedIn={this.state.loggedIn} getImages={this.updateUserGallery}  {...routerProps}/>
                 )}/>
+
                  <Route exact path="/ImageDetail/:id" render={(routerProps)=>(
-                  <ImageDetail imageData={this.state.images} deleteImage={this.deleteImage}  {...routerProps}/>
+                  <ImageDetail imageData={this.state.images} deleteImage={this.deleteImage} 
+                  loggedIn={this.state.loggedIn} {...routerProps}/>
                 )}/>
 
-
-                
               </Switch>
 
         </div>

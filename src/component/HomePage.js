@@ -23,7 +23,7 @@ function HomePage (props){
     else{
         return(
             <div className="HomePage-Container">
-               <h1>No User Logged In</h1>
+               <h1>Please Login Above!</h1>
             </div>
         )
     }

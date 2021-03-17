@@ -23,7 +23,15 @@ const Gallery = (props) => {
 
  
 
+  if (props.loggedIn===false){ 
+    return(
+        <div className="HomePage-Container">
+            <h1>Please Login Above!</h1>
+        </div>
+      )
+  }
 
+  else{
     const images=props.imageData.map((image,index)=>{
         if(state.removeImage===true){
 
@@ -68,6 +76,7 @@ const Gallery = (props) => {
 
 
     );
+  }
 }
 
 export default withRouter(Gallery);

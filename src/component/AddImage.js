@@ -47,47 +47,56 @@ function AddImage(props){
         }
 
 
+    if (props.loggedIn===false){ 
+        return(
+            <div className="HomePage-Container">
+                <h1>Please Login Above!</h1>
+            </div>
+        )
+    }
 
-    return(
+    else{
+        return(
 
-        <div className="AddImage">
+            <div className="AddImage">
 
-      
-            <form className="create-form-container" onSubmit={handleSubmit}>
-                <input
-                    name='title'
-                    type='text'
-                    placeholder='title'
-                    value={state.title}
-                    onChange={handleChange}
-                />
-                <input
-                    name='comments'
-                    type='text'
-                    placeholder='comments'
-                    value={state.comments}
-                    onChange={handleChange}
-                />
-                 <input
-                    name='url'
-                    type='text'
-                    placeholder='url'
-                    value={state.url}
-                    onChange={handleChange}
-                />
-                <input
-                    name='date'
-                    type='date'
-                    placeholder='date'
-                    value={state.date}
-                    onChange={handleChange}
-                />
-                <input className="new-image-submit" type='submit' value='Add Image' />
-            </form>
+        
+                <form className="create-form-container" onSubmit={handleSubmit}>
+                    <input
+                        name='title'
+                        type='text'
+                        placeholder='title'
+                        value={state.title}
+                        onChange={handleChange}
+                    />
+                    <input
+                        name='comments'
+                        type='text'
+                        placeholder='comments'
+                        value={state.comments}
+                        onChange={handleChange}
+                    />
+                    <input
+                        name='url'
+                        type='text'
+                        placeholder='url'
+                        value={state.url}
+                        onChange={handleChange}
+                    />
+                    <input
+                        name='date'
+                        type='date'
+                        placeholder='date'
+                        value={state.date}
+                        onChange={handleChange}
+                    />
+                    <input className="new-image-submit" type='submit' value='Add Image' />
+                </form>
 
-            
-        </div>
-    );
+                
+            </div>
+        );
+    }
 }
 
 export default withRouter(AddImage);
