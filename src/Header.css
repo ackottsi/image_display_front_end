@@ -6,7 +6,7 @@ header {
 }
 
 .headerBottomBorder {
-    height:1px;
+    height:35px;
     width: 100%;
     background-image: linear-gradient(to right, brown , yellow);
 }
