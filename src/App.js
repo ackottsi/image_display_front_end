@@ -4,7 +4,7 @@ import axios from 'axios';
 import Gallery from './component/Gallery'
 import AddImage from './component/AddImage'
 import ImageDetail from './component/ImageDetail'
-import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import Header from './component/Header'
 import Signup  from './component/Signup'
 import HomePage from './component/HomePage'

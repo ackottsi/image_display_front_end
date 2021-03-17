@@ -52,7 +52,7 @@ const ImageDetail=(props)=>{
         setState({editImage:true})
     }
 
-    
+
         if (state.editImage===true){    
             return(     
                 <div className="image-detail-container">
@@ -82,12 +82,11 @@ const ImageDetail=(props)=>{
                                                     defaultValue={foundImage.comments}
                                                     onChange={handleChange}
                                                 /><br></br>
-                                            Date:<input 
+                                            Date Taken:<input 
                                                     name='date'
                                                     type='date'
                                                     placeholder='date'
                                                     value={state.comments}
-                                                    defaultValue={newDate}
                                                     onChange={handleChange}
                                                 /><br></br>
                                                 <input className="edit-button" type='submit' name='' value='Update' />

@@ -5,7 +5,6 @@ import '../AddImage.css';
 
 
 function AddImage(props){
-    console.log(props.userId)
     const[state,setState]=useState({
         title:'',
         comments:'',
@@ -17,7 +16,6 @@ function AddImage(props){
 
     const handleChange=(e)=>{
         e.preventDefault()
-        console.log(e.target)
         const {name,value}=e.target;
         setState(prevState=>({
             ...prevState,          
@@ -26,7 +24,6 @@ function AddImage(props){
     }
 
        const handleSubmit=async (e)=>{
-           console.log("I ran")
         e.preventDefault();
         const data={
             title:state.title,
@@ -35,15 +32,11 @@ function AddImage(props){
             date:state.date,
             userId:props.userId
           }
-   
-        console.log("line 39")
         setState(data)
 
     const response= await axios.post('http://localhost:3002/images/postimage',data)
-          console.log(response)
-          console.log("checking this one")
           props.getImages()
-          
+          props.history.push('/Gallery')
         }
 
 
