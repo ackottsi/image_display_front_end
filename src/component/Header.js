@@ -6,7 +6,7 @@ import Login  from './Login'
 
 const Header = (props) => {
   return (  
-<div>
+<div className="header-container">
     <header>
           <nav>
             <div className="Nav-Login">

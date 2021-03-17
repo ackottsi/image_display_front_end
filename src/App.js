@@ -33,59 +33,54 @@ import HomePage from './component/HomePage'
 
 getImages= async ()=>{
   const response= await axios.get("http://localhost:3002/images/all")
-  console.log(response)
-  console.log(this.state.images)
 this.setState({
-  // images: response.data,
   apiDataLoaded:true
 });
 }
 
+
+
 getUser= async ()=>{
-  console.log(this.state.loggedIn)
- 
-      console.log(this.state.userId)
-      const response= await axios.get(`http://localhost:3002/user/profile/${this.state.userId}`)
-      console.log(response)
-      this.setState({
-          images: response.data.Images,
-          apiDataLoaded:true
-        })
+    const response= await axios.get(`http://localhost:3002/user/profile/${this.state.userId}`)
+    this.setState({
+        images: response.data.Images,
+        apiDataLoaded:true
+      })
 };
 
 
 deleteImage=async image=>{
-  console.log(image.id)
  await axios.delete(`http://localhost:3002/images/${image.id}`)
- const images=this.state.images.filter(item=>item.id!==image.id);  //https://dev.to/moz5691/axios-in-reactjs-iah
-                                                                   
+ const images=this.state.images.filter(item=>item.id!==image.id);  //https://dev.to/moz5691/axios-in-reactjs-iah                                                           
  this.setState({images})
 }
   
+
 updateUserGallery=async()=>{
   const response= await axios.get(`http://localhost:3002/user/profile/${this.state.userId}`)
   this.setState({
     images: response.data.Images
-  })
+  });
 }
 
+
 handleChange=(e)=>{
-  e.preventDefault()
+  e.preventDefault();
   const {name,value}=e.target;
   this.setState(prevState=>({
       ...prevState,          
       [name]:value
-  }))
+  }));
 }
 
 
 handleChangeSignUp=(e)=>{
-  e.preventDefault()
+  e.preventDefault();
   const {name,value}=e.target;
   this.setState(prevState=>({
       ...prevState,          
       [name]:value
-  }))
+  }));
 }
 
 
@@ -98,14 +93,12 @@ const data={
   password: this.state.password,
 };
 
-console.log(data);
+
 
 const response = await axios.post('http://localhost:3002/auth/login', data);
-console.log(response);
-console.log(this.props)
-this.setState({userId:response.data.id, loggedIn:true})
-this.getUser()
-this.props.history.push('/')
+this.setState({userId:response.data.id, loggedIn:true});
+this.getUser();
+this.props.history.push('/');
 };
 
 logout=(e)=>{
@@ -116,19 +109,16 @@ logout=(e)=>{
 userSignup=async (e)=>{
   e.preventDefault();
 
-const data={
-  username: this.state.usernameSignUp,
-  password: this.state.passwordSignUp,
-};
-
-console.log(data);
-const response = await axios.post('http://localhost:3002/auth/signup', data);
-console.log(response);
-this.props.history.push('/')
+  const data={
+    username: this.state.usernameSignUp,
+    password: this.state.passwordSignUp,
+  };
+  const response = await axios.post('http://localhost:3002/auth/signup', data);
+  this.props.history.push('/')
 };
 
 
-   render(){
+render(){
 
   return (
     <div>

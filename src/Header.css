@@ -164,3 +164,8 @@ nav {
 .Signed-In{
     text-align: center;
 }
+
+.header-container{
+position: sticky;
+top:0;
+}
