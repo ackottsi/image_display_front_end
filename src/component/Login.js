@@ -6,10 +6,6 @@ import '../Login.css';
 function Login(props){
    
 
-    console.log(props)
-
-   
-    
         return(  
             <div>
                 {props.userId

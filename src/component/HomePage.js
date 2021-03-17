@@ -3,11 +3,7 @@ import '../HomePage.css';
 
 
 function HomePage (props){
-   
 
-    console.log(props)
-
-   
     if (props.loggedIn===true)
         return(  
             <div>

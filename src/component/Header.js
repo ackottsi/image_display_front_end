@@ -5,8 +5,6 @@ import Login  from './Login'
 
 
 const Header = (props) => {
-    console.log(props)
-
   return (  
 <div>
     <header>

@@ -4,12 +4,6 @@ import '../Login.css';
 
 
 function Signup(props){
-   
-
-    console.log(props)
-
-   
-    
         return(  
             <div>
                     <div className="Login-Container">  
