@@ -1,5 +1,5 @@
 .image-detail-container img{
-    width: 50vw;
+    width: 45vw;
   
     }
 
@@ -9,6 +9,8 @@
         justify-content: center;
         align-items: center;
         margin-top: 40px;
+        margin-bottom: 40px;
+        margin-left: 10px;
     }
 
 .edit-button{
@@ -22,8 +24,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-left: 20px;
-    text-align: center;
+    margin-left: 80px;
+    text-align: left;
 }
 
 
@@ -60,4 +62,13 @@
     align-items: center;
     justify-content: flex-start;
 
+}
+
+.detail-title{
+    font-weight: bolder;
+    font-style: normal;
+}
+
+.detail-body{
+    font-style: italic;
 }

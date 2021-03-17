@@ -8,21 +8,22 @@ const ImageDetail=(props)=>{
     const foundImage=props.imageData.find(image=>{
         return image.id===parseInt(props.match.params.id)
     });
+
+    //https://stackoverflow.com/questions/46228846/how-to-format-javascript-date-to-mm-dd-yyyy
+    //used for formatting date on image detail page
+    let date=new Date(foundImage.date);
+    let newDate=(date.getMonth() + 1) + '/' + (date.getDate()+1) + '/' +  date.getFullYear();
+
     const[state,setState]=useState({
         title:foundImage.title,
         comments:foundImage.comments,
         url:foundImage.url,
-        date:foundImage.date,
+        date:newDate,
         editImage:false
     })
 
-
-
     const handleChange=(e)=>{
-       
         e.preventDefault()
-        console.log(state.title)
-        console.log(e.target)
         const {name,value}=e.target;
         setState(prevState=>({
             ...prevState,          
@@ -30,116 +31,101 @@ const ImageDetail=(props)=>{
         }))
     }
 
-       const handleEdit= async (e)=>{
+    const handleEdit= async (e)=>{
         e.preventDefault();
-        console.log(props)
+        let date=new Date(state.date);
+        let newDate=(date.getMonth() + 1) + '/' + (date.getDate()+1) + '/' +  date.getFullYear();    
         const data={
             title:state.title,
-            comments:state.comments
-            // url:state.url,
-            // date:state.date
+            comments:state.comments,
+            date:newDate
         }
-        console.log(data)
-
-       const res= await axios.put(`http://localhost:3002/images/${foundImage.id}`,data)
-        console.log(res)
+        const res= await axios.put(`http://localhost:3002/images/${props.match.params.id}`,data)
         const updatedData=res.data;
-        console.log(state.title)
-        setState({title:updatedData.title, comments:updatedData.comments, editImage:false});
-      
-        // props.history.push(`/ImageDetail/${foundImage.id}`)
-
-  }
+        setState({title:updatedData.title, comments:updatedData.comments, date:newDate, editImage:false})
+    }
 
 
     const handleViewRender=()=>{
-        // const response= await axios.get(`http://localhost:3002/images/${foundImage.id}`)
-            // console.log(response)
-            // const data=response.data          
-        console.log("edit button test")
-        // console.log(state.title)
         setState({editImage:true})
     }
 
-console.log(state.editImage)
-  if (state.editImage===true){    
-      console.log(state.title)
-      
-        return(
-            
-            <div className="image-detail-container">
-                {foundImage ? (
 
-                        <div className="page-container-edit">
-                            <div className="left-side-container">      
-                                <img src={foundImage.url} alt={foundImage.comments}/>
+        if (state.editImage===true){    
+            return(     
+                <div className="image-detail-container">
+                    {foundImage ? (
+
+                            <div className="page-container-edit">
+                                <div className="left-side-container">      
+                                    <img src={foundImage.url} alt={foundImage.comments}/>                                                    
+                                </div>
+                                <div className="right-side-container">
+                                    <div className="edit-detail-container">
+                                            <form className="edit-form-container" onSubmit={handleEdit}>
+                                                Picture Title:<input
+                                                    name='title'
+                                                    type='text'
+                                                    placeholder='title'
+                                                    value={state.title}
+                                                    defaultValue={foundImage.title}
+                                                    onChange={handleChange}
+                                                /><br></br>
+
+                                                Details:<input className="details-form"
+                                                    name='comments'
+                                                    type='text'
+                                                    placeholder='comments'
+                                                    value={state.comments}
+                                                    defaultValue={foundImage.comments}
+                                                    onChange={handleChange}
+                                                /><br></br>
+                                            Date Taken:<input 
+                                                    name='date'
+                                                    type='date'
+                                                    placeholder='date'
+                                                    value={state.comments}
+                                                    onChange={handleChange}
+                                                /><br></br>
+                                                <input className="edit-button" type='submit' name='' value='Update' />
+                                            </form>
+                                        </div> 
+                                </div>
+                            </div>
+                    ):
+                
+                        <h1>No Image found</h1>
+                    }
+                </div>
+            )
+        }
+
+        else{
+            return(
+                <div>
+                    {foundImage ? (
+                        <div className="page-container">
+                            <div className="image-detail-container">
+                                <div className="left-side-container">    
+                                    <img src={foundImage.url} alt={foundImage.comments}/> 
+                                </div>
+                                <div className="right-side-container">
+                                    <h4 className="detail-body"><span className="detail-title">Title:</span> {state.title}</h4>
+                                    <h4 className="detail-body"><span className="detail-title">Memory:</span> {state.comments}</h4>
+                                    <h4 className="detail-body"><span className="detail-title">Date:</span> {state.date}</h4>
+                                    <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
+
+                                </div>
                             
-
-                                
-                                <div className="edit-detail-container">
-                                    <form className="edit-form-container" onSubmit={handleEdit}>
-                                        Picture Title:<input
-                                            name='title'
-                                            type='text'
-                                            placeholder='title'
-                                            value={state.title}
-                                            defaultValue={foundImage.title}
-                                            onChange={handleChange}
-                                        /><br></br>
-
-                                        Details:<input className="details-form"
-                                            name='comments'
-                                            type='text'
-                                            placeholder='comments'
-                                            value={state.comments}
-                                            onChange={handleChange}
-                                        /><br></br>
-                                        <input className="edit-button" type='submit' name='' value='Update' />
-                                    </form>
-                                </div> 
                             </div>
-
-                            <div className="right-side-container">
-                                {/* <h3>{state.title}</h3>
-                                <h4>{state.comments}</h4> */}
-                            </div>
-                        </div>
-                ):
-            
-                    <h1>No Image found</h1>
-                }
-            </div>
-        )
-    }
-
-    else{
-        console.log(state.title)
-        return(
-            
-            
-            <div>
-                {foundImage ? (
-                    <div className="page-container">
-                        <div className="image-detail-container">
-                            <div className="left-side-container">    
-                                <img src={foundImage.url} alt={foundImage.comments}/> 
-                            </div>
-                            <div className="right-side-container">
-                                <h3>{state.title}</h3>
-                                <h4>{state.comments}</h4>
-                                <button className="edit-button" onClick={()=>handleViewRender()}>EDIT</button>
-
-                            </div>
-                           
-                        </div>
-                    </div>    
-                ):
-            
-                    <h1>No Image found</h1>
-                }
-            </div>
-        )
-    }
+                        </div>    
+                    ):
+                
+                        <h1>No Image found</h1>
+                    }
+                </div>
+            )
+        }
 }
 
 

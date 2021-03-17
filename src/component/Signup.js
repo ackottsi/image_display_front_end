@@ -4,29 +4,25 @@ import '../Login.css';
 
 
 function Signup(props){
-   
-
-    console.log(props)
-
-   
-    
         return(  
             <div>
-                    <div className="Login-Container">      
+                    <div className="Login-Container">  
+                    
                         <form className="Login-Form"  onSubmit={props.userSignup}>
+                            
                             <label className="Login-Label" htmlFor="username">username</label>
                             <input className="Login-Input"
                                 type="text"
-                                name="username"
-                                value={props.username}
-                                onChange={props.handleChange}
+                                name="usernameSignUp"
+                                value={props.usernameSignUp}
+                                onChange={props.handleChangeSignUp}
                             />
                             <label className="Login-Label" htmlFor="password">Password</label>
                             <input className="Login-Input"
                                 type="password"
-                                name="password"
-                                value={props.password}
-                                onChange={props.handleChange}
+                                name="passwordSignUp"
+                                value={props.passwordSignUp}
+                                onChange={props.handleChangeSignUp}
                             />
                             <input 
                                 className="Login-Submit" 

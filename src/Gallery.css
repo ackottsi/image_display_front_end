@@ -11,17 +11,46 @@
     }
 
 
-    .homepage-image-container button{
-      margin-top:10px;
-      background-color: lemonchiffon;
+    .delete-button{
+      position: absolute;
+      top:2px;
+      right: 2px;
+      background-color: black;
       border-radius: 20px;
+      color:white;
+      font-size: 16px;
     }
 
 
-    /* button:hover {
-      background-color: red;
-      height: 50px;
-      width: 50px;
-      font-size: 20px;
-      
-    } */
+    button:hover {
+      background-color: rgb(85, 85, 85);
+      border-radius: 20px;     
+    }
+
+    .page-container-with-toggle-button{
+      display: flex;
+      flex-direction: column-reverse;
+      margin-top:10px;
+     
+    }
+
+
+    .remove-toggle{
+      margin-left: 10px;
+      background-color: black;
+      color: white;
+      border-radius: 10px;
+    }
+
+    .remove-toggle:hover{
+      margin-left: 10px;
+      background-color: rgb(85, 85, 85);
+      color: white;
+      border-radius: 10px;
+    }
+
+    .homepage-image-container{
+      position: relative;
+
+
+    }

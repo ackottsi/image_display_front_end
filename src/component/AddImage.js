@@ -5,7 +5,6 @@ import '../AddImage.css';
 
 
 function AddImage(props){
-    console.log(props.userId)
     const[state,setState]=useState({
         title:'',
         comments:'',
@@ -17,7 +16,6 @@ function AddImage(props){
 
     const handleChange=(e)=>{
         e.preventDefault()
-        console.log(e.target)
         const {name,value}=e.target;
         setState(prevState=>({
             ...prevState,          
@@ -26,7 +24,6 @@ function AddImage(props){
     }
 
        const handleSubmit=async (e)=>{
-           console.log("I ran")
         e.preventDefault();
         const data={
             title:state.title,
@@ -35,59 +32,64 @@ function AddImage(props){
             date:state.date,
             userId:props.userId
           }
-   
-        console.log("line 39")
         setState(data)
 
     const response= await axios.post('http://localhost:3002/images/postimage',data)
-          console.log(response)
-          console.log("checking this one")
           props.getImages()
-          
+          props.history.push('/Gallery')
         }
 
 
+    if (props.loggedIn===false){ 
+        return(
+            <div className="HomePage-Container">
+                <h1>Please Login Above!</h1>
+            </div>
+        )
+    }
 
-    return(
+    else{
+        return(
 
-        <div className="AddImage">
+            <div className="AddImage">
 
-      
-            <form className="create-form-container" onSubmit={handleSubmit}>
-                <input
-                    name='title'
-                    type='text'
-                    placeholder='title'
-                    value={state.title}
-                    onChange={handleChange}
-                />
-                <input
-                    name='comments'
-                    type='text'
-                    placeholder='comments'
-                    value={state.comments}
-                    onChange={handleChange}
-                />
-                 <input
-                    name='url'
-                    type='text'
-                    placeholder='url'
-                    value={state.url}
-                    onChange={handleChange}
-                />
-                <input
-                    name='date'
-                    type='date'
-                    placeholder='date'
-                    value={state.date}
-                    onChange={handleChange}
-                />
-                <input className="new-image-submit" type='submit' value='Add Image' />
-            </form>
+        
+                <form className="create-form-container" onSubmit={handleSubmit}>
+                    <input
+                        name='title'
+                        type='text'
+                        placeholder='title'
+                        value={state.title}
+                        onChange={handleChange}
+                    />
+                    <input
+                        name='comments'
+                        type='text'
+                        placeholder='comments'
+                        value={state.comments}
+                        onChange={handleChange}
+                    />
+                    <input
+                        name='url'
+                        type='text'
+                        placeholder='url'
+                        value={state.url}
+                        onChange={handleChange}
+                    />
+                    <input
+                        name='date'
+                        type='date'
+                        placeholder='date'
+                        value={state.date}
+                        onChange={handleChange}
+                    />
+                    <input className="new-image-submit" type='submit' value='Add Image' />
+                </form>
 
-            
-        </div>
-    );
+                
+            </div>
+        );
+    }
 }
 
 export default withRouter(AddImage);
