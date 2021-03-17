@@ -1,6 +1,6 @@
 .HomePage{
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     column-gap:15px;
     margin:20px 20px 20px 20px;
   }
@@ -11,16 +11,6 @@
     width: 220px;
     }
 
-
-    .delete-button{
-      position: absolute;
-      top:25px;
-      right:1px;
-      background-color: black;
-      border-radius: 20px;
-      color:white;
-      font-size: 16px;
-    }
 
 
     button:hover {
@@ -52,4 +42,16 @@
 
     .homepage-image-container{
       position: relative;
+      z-index: 1;
+    }
+
+
+    .delete-button{
+      position: absolute;
+      top:25px;
+      right:1px;
+      background-color: black;
+      border-radius: 20px;
+      color:white;
+      font-size: 16px;
     }
