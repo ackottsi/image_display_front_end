@@ -166,6 +166,9 @@ nav {
 }
 
 .header-container{
-position: sticky;
-top:0;
+overflow: hidden;
+position:fixed;
+top:0px;
+width: 100%;
 }
+

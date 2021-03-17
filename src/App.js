@@ -128,7 +128,7 @@ render(){
             <Header handleChange={this.handleChange} userLogin={this.userLogin}
                   username={this.state.username} password={this.state.password} userId={this.state.userId} />
                   
-
+          <div className="main-body">
             <Switch>
             
             <Route exact path="/" render={(routerProps)=>(
@@ -155,8 +155,9 @@ render(){
                   <ImageDetail imageData={this.state.images} deleteImage={this.deleteImage} 
                   loggedIn={this.state.loggedIn} {...routerProps}/>
                 )}/>
-
+  
               </Switch>
+             </div>
 
         </div>
       :
