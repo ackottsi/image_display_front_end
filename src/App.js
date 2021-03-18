@@ -8,6 +8,10 @@ import {Route, Switch, withRouter} from 'react-router-dom';
 import Header from './component/Header'
 import Signup  from './component/Signup'
 import HomePage from './component/HomePage'
+
+//URL to Heroku deployed server
+const URL="https://image-display-ack-app.herokuapp.com"
+
  class App extends Component{
    constructor(props){
      super(props);
@@ -32,7 +36,7 @@ import HomePage from './component/HomePage'
   
 
 getImages= async ()=>{
-  const response= await axios.get("http://localhost:3002/images/all")
+  const response= await axios.get(`${URL}/images/all`)
 this.setState({
   apiDataLoaded:true
 });
@@ -41,7 +45,7 @@ this.setState({
 
 
 getUser= async ()=>{
-    const response= await axios.get(`http://localhost:3002/user/profile/${this.state.userId}`)
+    const response= await axios.get(`${URL}/user/profile/${this.state.userId}`)
     this.setState({
         images: response.data.Images,
         apiDataLoaded:true
@@ -50,14 +54,14 @@ getUser= async ()=>{
 
 
 deleteImage=async image=>{
- await axios.delete(`http://localhost:3002/images/${image.id}`)
+ await axios.delete(`${URL}/images/${image.id}`)
  const images=this.state.images.filter(item=>item.id!==image.id);  //https://dev.to/moz5691/axios-in-reactjs-iah                                                           
  this.setState({images})
 }
   
 
 updateUserGallery=async()=>{
-  const response= await axios.get(`http://localhost:3002/user/profile/${this.state.userId}`)
+  const response= await axios.get(`${URL}/user/profile/${this.state.userId}`)
   this.setState({
     images: response.data.Images
   });
@@ -95,7 +99,7 @@ const data={
 
 
 
-const response = await axios.post('http://localhost:3002/auth/login', data);
+const response = await axios.post(`${URL}/auth/login`, data);
 this.setState({userId:response.data.id, loggedIn:true});
 this.getUser();
 this.props.history.push('/');
@@ -113,7 +117,7 @@ userSignup=async (e)=>{
     username: this.state.usernameSignUp,
     password: this.state.passwordSignUp,
   };
-  const response = await axios.post('http://localhost:3002/auth/signup', data);
+  const response = await axios.post(`${URL}/auth/signup`, data);
   this.props.history.push('/')
 };
 

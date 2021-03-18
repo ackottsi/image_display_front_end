@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
+//URL to Heroku deployed server
+const URL="https://image-display-ack-app.herokuapp.com"
+
 
 const ImageDetail=(props)=>{
     const foundImage=props.imageData.find(image=>{
@@ -40,7 +43,7 @@ const ImageDetail=(props)=>{
             comments:state.comments,
             date:newDate
         }
-        const res= await axios.put(`http://localhost:3002/images/${props.match.params.id}`,data)
+        const res= await axios.put(`${URL}/images/${props.match.params.id}`,data)
         const updatedData=res.data;
         setState({title:updatedData.title, comments:updatedData.comments, date:newDate, editImage:false})
     }

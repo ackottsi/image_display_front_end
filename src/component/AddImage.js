@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import '../AddImage.css';
 
+//URL to Heroku deployed server
+const URL="https://image-display-ack-app.herokuapp.com"
+
 
 function AddImage(props){
     const[state,setState]=useState({
@@ -34,7 +37,7 @@ function AddImage(props){
           }
         setState(data)
 
-    const response= await axios.post('http://localhost:3002/images/postimage',data)
+    const response= await axios.post(`${URL}/images/postimage`,data)
           props.getImages()
           props.history.push('/Gallery')
         }
