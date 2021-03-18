@@ -6,7 +6,7 @@ header {
 }
 
 .headerBottomBorder {
-    height:1px;
+    height:35px;
     width: 100%;
     background-image: linear-gradient(to right, brown , yellow);
 }
@@ -166,6 +166,10 @@ nav {
 }
 
 .header-container{
-position: sticky;
-top:0;
+overflow: hidden;
+top:0px;
+width: 100%;
+position: relative;
+z-index: 10;
 }
+

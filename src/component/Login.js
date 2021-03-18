@@ -10,7 +10,7 @@ function Login(props){
             <div>
                 {props.userId
                 ?
-                    <h3 className="Signed-In">Current User: {props.username}</h3>
+                    <h3 className="Signed-In">Current User:<br></br> {props.username}</h3>
                 :
                     <div className="Login-Container">      
                         <form className="Login-Form"  onSubmit={props.userLogin}>
