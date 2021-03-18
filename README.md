@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# project_4 README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Photo Book Display App
 
-## Available Scripts
+[Link to deployed photo book app](http://imagephotobookgaproject4.surge.sh)
 
-In the project directory, you can run:
+[Link to git repository for back end](https://github.com/ackottsi/project_4_server_side)
 
-### `npm start`
+[Link to git repository for front end](https://github.com/ackottsi/image_display_front_end)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
+#### Motivation:
+Learning how to connect a Front End and Back End Application.  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
+#### Objective Level 1 (MVP) (complete):
+- [x] Show Images in front end
+- [x] Database created and accessed
+- [x] Full stack CRUD for image model
+- [x] Used React Hooks and Amazon S3 for new technology
 
-### `npm test`
+#### Objective Level 2 (partially complete):
+* [x] Gallery page shows photos based on user that is logged in
+* [x] User Login/Sign up working
+* [x] Stying is pleasant to view
+* [x] able to update comments from details page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Objective Level 3 (partially complete):
+* [ ] Animate slide show
+* [ ] ability to filter gallery images based on image details
+* [ ] WOW level stying
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
+#### Wireframe
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##### Page Layout and Website Flow
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+ * detail page wireframe
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    ![detail wireframe](https://imagebucketgaackproject.s3.us-east-2.amazonaws.com/Imagefolder/Screen+Shot+2021-03-17+at+5.56.40+PM.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ * gallery page wireframe 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    ![gallery wireframe](https://imagebucketgaackproject.s3.us-east-2.amazonaws.com/Imagefolder/Screen+Shot+2021-03-17+at+5.56.31+PM.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+#### Technology used:
+* HTML, CSS, JavaScript
+* React, Node.js, Express
+* github - used for revision control
+* Surge - used for deployment
+* Heroku
+* Amazon S3 - AWS Simple Cloud Storage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Main features:
+ * Gallery View of Images
+ * Image detail page
+ * Ability to update images
+ * Images filtered by currently logged in User
+ 
+---
 
-### Code Splitting
+#### Room for improvement:
+1. Add Delete and Update to User Model.
+2. Additional styling to create a better user experience.
+3. Animated SlideShow feature for images.
+4. Add a footer 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+#### Lessons Learned:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+While trying to deploy to Heroku, I encountered the following error:
 
-### Making a Progressive Web App
+![Heroku Error](https://imagebucketgaackproject.s3.us-east-2.amazonaws.com/Imagefolder/Screen+Shot+2021-03-17+at+11.26.34+PM.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+After researching, it was discovered that it was not an uncommon issue and is related to an issue where node_modules are being pushed to the heroku environment.  This issue was resolved by following the instructions listed in the "Don't check in generated directories" section of the Heroku troubleshooting documentation [troubleshooting documentation](https://devcenter.heroku.com/articles/troubleshooting-node-deploys#don-t-check-in-generated-directories)

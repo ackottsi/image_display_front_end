@@ -32,6 +32,7 @@
       color: white;
       border-radius: 10px;
       margin-bottom: 20px;
+      margin-top: 25px;
     }
 
     .remove-toggle:hover{
@@ -44,13 +45,16 @@
     .homepage-image-container{
       position: relative;
       z-index: 1;
+      height: 200px;
+      width: 220px;
+      margin-top: 10px;
     }
 
 
     .delete-button{
       position: absolute;
       top:25px;
-      right:1px;
+      right:2px;
       background-color: black;
       border-radius: 20px;
       color:white;
